@@ -1,15 +1,14 @@
 <script>
-import Icon from '@iconify/svelte';
+import Icon from '$lib/components/Icon.svelte';
 </script>
 
-<footer class="footer bg-base-200 text-base-content p-10">
+<footer class="footer bg-night text-base-content p-10 text-white">
 	<aside>
-		<a href="/">
-
-		<Icon icon="oui:cross-in-circle-empty" style="color: #e0c3a3; rotate: 45deg; font-size: 3.5rem" />
+		<a href="/" aria-label="Eucharist Logo">
+			<Icon height="3.5rem" width="3.5rem" />
 		</a>
 		<p>
-			Eucharistic Miracles
+			Eucharistic Miracles of the World
 			<br />
 			Saving souls since circa 33 AD
 		</p>

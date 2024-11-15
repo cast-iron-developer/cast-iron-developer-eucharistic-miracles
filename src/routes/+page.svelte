@@ -6,7 +6,7 @@
 	<meta name="description" content="Using Modern Web Technologies to bring Bl. Carlo Acutis' dream of reaching the masses with the beauty of Jesus being fully present in the Eucharist." />
 </svelte:head>
 
-<div>
+<section>
 	<div
 		class="hero min-h-screen"
 		style="background-image: url({img});">
@@ -17,4 +17,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+</section>

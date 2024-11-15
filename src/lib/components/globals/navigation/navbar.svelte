@@ -1,18 +1,18 @@
 <script>
-	import Icon from '@iconify/svelte';
+
+import Icon from '$lib/components/Icon.svelte';
 </script>
 
 <div class="sticky top-0 z-50  bg-night">
 	<div class="navbar mx-auto only-lg:max-w-5xl only-xl:max-w-6xl to-2xl:max-w-7xl">
 		<div class="navbar-start">
-			<div class="dropdown">
-				<div tabindex="0" role="button" class="btn btn[shamrock] lg:hidden">
+			<div class="dropdown mr-2">
+				<div tabindex="0" role="button" class="btn bg-night-600 hover:bg-night-700 lg:hidden">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						class="h-5 w-5"
-						fill="none"
 						viewBox="0 0 24 24"
-						stroke="currentColor">
+						stroke="#eeeeee">
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -22,25 +22,36 @@
 				</div>
 				<ul
 					tabindex="-1"
-					class="menu menu-sm dropdown-content bg-shamrock rounded-box z-[1] mt-3 w-52 p-2 shadow">
+					class="menu menu-sm dropdown-content bg-night-600 rounded-box z-[1] mt-3 w-52 p-2 shadow text-white">
 					<li><a href="/miracles">Miracles</a></li>
 					<li><a href="/our-lady">Our Lady</a></li>
 					<li><a href="/saints">Saints</a></li>
 					<li><a href="/communion">Communion</a></li>
 				</ul>
 			</div>
-			<a href="/" class="btn btn-primary hover:bg-none text-xl">
-				<Icon icon="oui:cross-in-circle-empty" style="color: #e0c3a3; rotate: 45deg; font-size: 1.5rem" />
-				Eucharistic Miracles
-			</a>
+				<a href="/" class="inline-flex items-center logo bg-night hover:bg-none text-xl text-white p-1.5">
+					<Icon height="2rem" width="2rem" />
+					<span class="ml-2 text-nowrap">Eucharistic Miracles</span>
+				</a>
 		</div>
 		<div class="navbar-end hidden lg:flex">
 			<ul class="menu menu-horizontal px-1 text-white">
-				<li><a href="/miracles">Miracles</a></li>
-				<li><a href="/our-lady">Our Lady</a></li>
-				<li><a href="/saints">Saints</a></li>
-				<li><a href="/communion">Communion</a></li>
+				<li><a class="hover:bg-night-700" href="/miracles">Miracles</a></li>
+				<li><a class="hover:bg-night-700" href="/our-lady">Our Lady</a></li>
+				<li><a class="hover:bg-night-700" href="/saints">Saints</a></li>
+				<li><a class="hover:bg-night-700" href="/communion">Communion</a></li>
 			</ul>
 		</div>
 	</div>
 </div>
+
+<style>
+.testing {
+		border: 5px solid green;
+}
+@media (prefers-reduced-motion: no-preference) {
+    .logo {
+        animation: button-pop var(--animation-btn, 0.25s) ease-out;
+    }
+}
+</style>

@@ -1,4 +1,6 @@
-export const miracles = [
+import type { Miracle } from '$lib/models/Miracle';
+
+export const miracles: Miracle[] = [
 	{
 		id: 1,
 		created_at: '3/15/2024',

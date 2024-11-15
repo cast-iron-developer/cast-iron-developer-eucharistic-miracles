@@ -1,25 +1,14 @@
-import daisyui from 'daisyui';
-const plugin = require('tailwindcss/plugin')
 import aspectRatio from '@tailwindcss/aspect-ratio';
 import containerQueries from '@tailwindcss/container-queries';
 import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
+import type { Config } from 'tailwindcss';
 
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
 
   plugins: [
-    plugin(({ matchUtilities, theme }) => {
-      matchUtilities(
-        {
-          'text-shadow-white': (value) => ({
-            textShadow: value
-          })
-        },
-        { values: theme('textShadowWhite') }
-      );
-    }),
     require('daisyui'),
     typography, forms, containerQueries, aspectRatio,
   ],
@@ -108,4 +97,4 @@ export default {
     }
   }
 
-}
+} satisfies Config

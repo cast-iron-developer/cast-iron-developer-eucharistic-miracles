@@ -46,9 +46,6 @@ import Icon from '$lib/components/Icon.svelte';
 </div>
 
 <style>
-.testing {
-		border: 5px solid green;
-}
 @media (prefers-reduced-motion: no-preference) {
     .logo {
         animation: button-pop var(--animation-btn, 0.25s) ease-out;

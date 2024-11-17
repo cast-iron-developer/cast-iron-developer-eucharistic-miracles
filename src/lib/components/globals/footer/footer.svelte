@@ -1,8 +1,8 @@
 <script>
-import Icon from '$lib/components/Icon.svelte';
+	import Icon from '$lib/components/Icon.svelte';
 </script>
 
-<footer class="footer bg-night text-base-content p-10 text-white">
+<footer class="footer bg-primary text-base-content p-10 text-white">
 	<aside>
 		<a href="/" aria-label="Eucharist Logo">
 			<Icon height="3.5rem" width="3.5rem" />

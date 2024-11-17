@@ -10,6 +10,6 @@ export interface Miracle {
 	draft: boolean;
 	deleted: boolean;
 	modified_at: string;
-	location_id: number;
+	location_name: string;
 	short_blurb: number;
 }

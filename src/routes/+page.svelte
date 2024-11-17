@@ -6,6 +6,16 @@
 	<meta name="description" content="Using Modern Web Technologies to bring Bl. Carlo Acutis' dream of reaching the masses with the beauty of Jesus being fully present in the Eucharist." />
 </svelte:head>
 
+
+<div class="collapse bg-base-200">
+	<input type="checkbox" />
+	<div class="collapse-title text-xl font-medium">Click me to show/hide content</div>
+	<div class="collapse-content">
+		<p>hello</p>
+	</div>
+</div>
+
+
 <section>
 	<div
 		class="hero min-h-screen"

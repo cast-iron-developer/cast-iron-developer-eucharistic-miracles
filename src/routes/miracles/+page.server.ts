@@ -1,9 +1,9 @@
 import { miracles } from '../../dummy-data/miracles.js';
-import { locations } from '../../dummy-data/location';
+import { locations } from '../../dummy-data/country';
 
 import type { PageServerLoad } from './$types';
 import type { Miracle } from '$lib/models/Miracle';
-import type { Location } from '$lib/models/Location';
+import type { Country } from '$lib/models/Country';
 
 export const load: PageServerLoad = async () => {
 	const miracleData = miracles
@@ -24,18 +24,27 @@ export const load: PageServerLoad = async () => {
 			short_blurb: miracle.short_blurb
 		}));
 
-	const locationData = locations
-		.filter((location: Location) => !location.draft && !location.deleted)
-		.map((location: Location) => ({
-			id: location.id,
-			created_at: location.created_at,
-			modified_at: location.modified_at,
-			name: location.name,
-			deleted: location.deleted,
-			draft: location.deleted
-		}));
+	const countryData = locations
+		.filter((country: Country) => !country.draft && !country.deleted)
+		.map((country: Country) => ({
+			id: country.id,
+			created_at: country.created_at,
+			modified_at: country.modified_at,
+			name: country.name,
+			deleted: country.deleted,
+			draft: country.deleted
+		}))
+		.sort((a, b) => {
+			if (a.name < b.name) {
+				return -1;
+			} else if (a.name > b.name) {
+				return 1;
+			} else {
+				return 0;
+			}
+		});
 	return {
 		miracleData,
-		locationData
+		countryData
 	};
 };

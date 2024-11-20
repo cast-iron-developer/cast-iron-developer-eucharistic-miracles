@@ -1,13 +1,19 @@
 <script lang="ts">
 	import img from '$lib/images/Lanciano.jpg';
 	import type { Miracle } from '$lib/models/Miracle';
+	import type { Country } from '$lib/models/Country';
 
 	let { data } = $props();
 
 	let locationFilter: string[] = $state([]);
+	let countryInput: string = $state('');
+	let selectedFilters: Set<string> = $state(new Set());
 	let visibleMiracles: Miracle[] = $state(data.miracleData);
+	let visibleCountries: Country[] = $state(data.countryData);
+	let selectedCountries: Country[] = $state([]);
+	let unselectedCountries: Country[] = $state([]);
 
-	const handleOnChange = (event: Event) => {
+	const handleOnChangeLocationFilter = (event: Event) => {
 		const target = event.target as HTMLInputElement;
 
 		if (target.checked && !locationFilter.includes(target.value)) {
@@ -20,10 +26,39 @@
 		visibleMiracles = locationFilter.length == 0 ? data.miracleData : data.miracleData.filter((miracle: Miracle) => {
 			return locationFilter.includes(miracle.location_name);
 		});
+
+		// const checkedFilters: Element[] = Array.from(document.querySelectorAll('.country-list .country-label input:checked'));
+		// if (checkedFilters.length === 0) {
+		// 	// reset here
+		// 	selectedFilters = new Set();
+		// } else {
+		// 	const tempFilters: string[] = checkedFilters.map((item: Element) => {
+		// 		return (item as HTMLInputElement)?.dataset?.itemId?.toString()!;
+		// 	});
+		//
+		// 	selectedFilters = new Set(tempFilters);
+		//
+		// 	visibleCountries = visibleCountries.sort((a, b) => {
+		// 		const isInB1 = selectedFilters.has((a.id).toString());
+		// 		const isInB2 = selectedFilters.has((b.id).toString());
+		//
+		// 		return isInB1 === isInB2 ? 0 : isInB1 ? -1 : 1;
+		// 	});
+		// }
+		// console.log('selected filters: ', selectedFilters);
+
+	};
+
+	const handleCountryTextInput = (event: Event) => {
+		const target = event.target as HTMLInputElement;
+
+		visibleCountries = target.value ? data.countryData.filter(country => {
+			return country.name.match(`${target.value}.*`);
+		}) : data.countryData;
 	};
 
 </script>
-<!--https://svelte.dev/playground/0429bd69748e44cdaeb8074c982f967d?version=3.41.0#H4sIAAAAAAAAE5VUTW_bMAz9K4RRIMmQ2sCAXVw73QdWbMB26nqqC1SxlViDLAkS3S5w_d9HSU6TBc1hhzgy-fhIPz57SBTreJInv9hacrgRErkVapssk42Q3CX5_ZDgzniID1B8KvhkTOqeOOEptmaOvxWvtUKukGiSShWutsLgqlIVis5oizCAVj91rxBG2FjdwSyWzq7-AX1htlmG62fd7OLpG2cNt0v4rkyPSwjzU0bLvlNLuMUdTX_C6tAyE6n9T3IEx5mtWyihVw3fCMWbq32qd9w6ytw_hNBFDk_CCepyNyWm2uvAhwGeboKAc38D5QqGmKvQcuytCpypF4qA1mHaMazb-ePFELnG9N3jAl5ejnCSnYFF5nEBeZzUD0mhSc85cztVw3xxNAUtwyFY7gwNz56ZQNhwTzxrEY3Ls8wy1eguNO94xoy4JnQv0ZXvP8wWxywNQ_bK4inT306r-eLqSAzKe1g6cYTU6BFFdnACucKvio4AH6eF91YeZtpiqzvmLpkxGy2FTrcC236dCp2ttcaw08tak0yS1vdWLK2dm019p1509h4KViwOblrF6YvgKfC2L6skal4lsBaqyZ-Y7Hm5XwTUtB9HoI4G7FHDc_gjsJGs5q2WxErp2z1HFltmJz2Lvbf3E8TXkR5EGN6A1c-uHI7tNwJZNKd4OXitx9XeaEV8A6AN5NT6xhutSl4BFQ4nLhxfa7NYfJ7sBzvP5Z36H1RfOybkG1zcx8_xFFkQ5kjESbR4s6JPDvI_mORoez4-jH8BFCk8q98EAAA=-->
+
 <svelte:head>
 	<title>Miracles | Eucharistic Miracles of the World!</title>
 	<meta name="description"
@@ -58,43 +93,33 @@
 		<p class="text-2xl text-white mb-4">
 			Search
 		</p>
-		<p class="text-white">filter: {locationFilter}</p>
 		<div class="search-filters">
-
-			<div class="countries collapse collapse-arrow bg-base-200 mb-2">
+			<div class="collapse collapse-arrow bg-base-200 mb-2">
 				<input type="checkbox" />
 				<div class="collapse-title text-xl font-medium">Countries</div>
 				<div class="collapse-content">
-					{#each data.locationData as location }
-						<div class="form-control text-white">
-							<label class="cursor-pointer label justify-normal">
-								<input type="checkbox" checked={false} class="checkbox" value={location.name}
-											 onchange={handleOnChange} />
+					<input type="text" placeholder="Enter Country Here"
+								 class="country-text-input input input-bordered w-full max-w-xs"
+								 value={countryInput} oninput={handleCountryTextInput} />
+					<div class="country-list">
+						{#each visibleCountries as location }
+							<label id={location.id.toString()} for={location.name}
+										 class="country-label cursor-pointer label justify-normal">
+								<input name={location.name} type="checkbox" class="checkbox" value={location.name}
+											 data-item-id={location.id.toString()}
+											 onchange={handleOnChangeLocationFilter} />
 								<span class="label-text pl-2">{location.name}</span>
 							</label>
-						</div>
-					{/each}
-				</div>
-			</div>
-
-			<div class="saints collapse collapse-arrow bg-base-200 mb-2">
-				<input type="checkbox" />
-				<div class="collapse-title text-xl font-medium">Saints</div>
-				<div class="collapse-content">
-					No Results!
-				</div>
-			</div>
-
-			<div class="tags collapse collapse-arrow bg-base-200 mb-2">
-				<input type="checkbox" />
-				<div class="collapse-title text-xl font-medium">Tags</div>
-				<div class="collapse-content">
-					No Results!
+						{/each}
+					</div>
 				</div>
 			</div>
 		</div>
 	</aside>
 	<div class="section-miracles-list grid grid-cols-3 gap-10 auto-rows-max justify-items-center">
+		{#if visibleMiracles.length === 0 }
+			<p class="text-3xl text-white text-center">Sorry, no results here!</p>
+		{/if}
 		{#each visibleMiracles as miracle }
 			<article class="col-span-1 glass rounded">
 				<figure>
@@ -103,7 +128,7 @@
 						alt="found at https://stjohncc.org/sacrament-eucharist" />
 				</figure>
 				<div class="card-body text-white">
-					<h2 class="card-title">{miracle.title} &mdash; {miracle.occurrence_year}</h2>
+					<h2 class="card-title">{miracle.title} &mdash; {miracle.occurrence_year} &mdash; {miracle.location_name}</h2>
 					<p>{miracle.blurb}</p>
 					<div class="card-actions justify-end">
 						<a href="/link_to_miracle" class="btn btn-tert">Learn more!</a>
@@ -134,6 +159,15 @@
 
     &-aside {
       grid-column: 2/3;
+
+      .country-list {
+        display: flex;
+        flex-direction: column;
+
+        .country-label:has(input:checked) {
+          order: -9999;
+        }
+      }
     }
 
     &-list {

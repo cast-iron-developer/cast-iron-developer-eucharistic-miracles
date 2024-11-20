@@ -1,4 +1,4 @@
-export interface Location {
+export interface Country {
 	id: number;
 	created_at: string;
 	modified_at: string;

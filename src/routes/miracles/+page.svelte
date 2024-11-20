@@ -7,11 +7,8 @@
 
 	let locationFilter: string[] = $state([]);
 	let countryInput: string = $state('');
-	let selectedFilters: Set<string> = $state(new Set());
 	let visibleMiracles: Miracle[] = $state(data.miracleData);
 	let visibleCountries: Country[] = $state(data.countryData);
-	let selectedCountries: Country[] = $state([]);
-	let unselectedCountries: Country[] = $state([]);
 
 	const handleOnChangeLocationFilter = (event: Event) => {
 		const target = event.target as HTMLInputElement;
@@ -26,26 +23,6 @@
 		visibleMiracles = locationFilter.length == 0 ? data.miracleData : data.miracleData.filter((miracle: Miracle) => {
 			return locationFilter.includes(miracle.location_name);
 		});
-
-		// const checkedFilters: Element[] = Array.from(document.querySelectorAll('.country-list .country-label input:checked'));
-		// if (checkedFilters.length === 0) {
-		// 	// reset here
-		// 	selectedFilters = new Set();
-		// } else {
-		// 	const tempFilters: string[] = checkedFilters.map((item: Element) => {
-		// 		return (item as HTMLInputElement)?.dataset?.itemId?.toString()!;
-		// 	});
-		//
-		// 	selectedFilters = new Set(tempFilters);
-		//
-		// 	visibleCountries = visibleCountries.sort((a, b) => {
-		// 		const isInB1 = selectedFilters.has((a.id).toString());
-		// 		const isInB2 = selectedFilters.has((b.id).toString());
-		//
-		// 		return isInB1 === isInB2 ? 0 : isInB1 ? -1 : 1;
-		// 	});
-		// }
-		// console.log('selected filters: ', selectedFilters);
 
 	};
 
@@ -88,7 +65,6 @@
 </section>
 
 <section class="section-miracles bg-primary py-20">
-
 	<aside class="section-miracles-aside px-2">
 		<p class="text-2xl text-white mb-4">
 			Search
@@ -108,7 +84,7 @@
 								<input name={location.name} type="checkbox" class="checkbox" value={location.name}
 											 data-item-id={location.id.toString()}
 											 onchange={handleOnChangeLocationFilter} />
-								<span class="label-text pl-2">{location.name}</span>
+								<span class="label-text pl-2">{`${location.name} - ${location.id}`}</span>
 							</label>
 						{/each}
 					</div>
@@ -116,7 +92,7 @@
 			</div>
 		</div>
 	</aside>
-	<div class="section-miracles-list grid grid-cols-3 gap-10 auto-rows-max justify-items-center">
+	<article class="section-miracles-list grid grid-cols-3 gap-10 auto-rows-max justify-items-center">
 		{#if visibleMiracles.length === 0 }
 			<p class="text-3xl text-white text-center">Sorry, no results here!</p>
 		{/if}
@@ -136,8 +112,16 @@
 				</div>
 			</article>
 		{/each}
-	</div>
+	</article>
+</section>
 
+<section class="section-footnotes py-20 bg-secondary-100 text-white">
+	<!-- Eventually we will break this into a footnote section-->
+	<article class="footnotes">
+		<aside>
+			<p class="text-3xl">Footnotes</p>
+		</aside>
+	</article>
 </section>
 
 <style lang="scss">
@@ -160,18 +144,28 @@
     &-aside {
       grid-column: 2/3;
 
-      .country-list {
-        display: flex;
-        flex-direction: column;
-
-        .country-label:has(input:checked) {
-          order: -9999;
-        }
-      }
+      //.country-list {
+      //  display: flex;
+      //  flex-direction: column;
+      //
+      //  .country-label:has(input:checked) {
+      //    order: -9999;
+      //  }
+      //}
     }
 
     &-list {
       grid-column: 3/4;
+    }
+  }
+
+  .section-footnotes {
+    display: grid;
+    grid-template-columns: 1fr 10fr 1fr;
+    grid-template-rows: max-content;
+
+    .footnotes {
+      grid-column: 2/3;
     }
   }
 </style>

@@ -1,38 +1,50 @@
 <script lang="ts">
 	import img from '$lib/images/Lanciano.jpg';
+	import Filter from '$lib/components/filter/Filter.svelte';
+	import List from '$lib/components/list/List.svelte';
+	import type { Database } from '$lib/server/database.types';
 
+	type Miracle = Database['public']['Tables']['miracles']['Row'];
+	type Country = Database['public']['Tables']['countries']['Row'];
+	type Filters = { countries?: string };
 	let { data } = $props();
 
-	console.log(data);
+	let filters: Filters = {};
+	let locationFilter: string[] = $state([]);
+	let countryInput: string = $state('');
+	let visibleMiracles: Miracle[] = $state(data.miracleData);
+	let visibleCountries: Country[] = $state(data.countryData);
 
-	// let locationFilter: string[] = $state([]);
-	// let countryInput: string = $state('');
-	// let visibleMiracles: Miracle[] = $state(data.miracleData);
-	// let visibleCountries: Country[] = $state(data.countryData);
-	//
-	// const handleOnChangeLocationFilter = (event: Event) => {
-	// 	const target = event.target as HTMLInputElement;
-	//
-	// 	if (target.checked && !locationFilter.includes(target.value)) {
-	// 		locationFilter.push(target.value);
-	// 	} else {
-	// 		let index: number = locationFilter.indexOf(target.value);
-	// 		locationFilter.splice(index, 1);
-	// 	}
-	//
-	// 	visibleMiracles = locationFilter.length == 0 ? data.miracleData : data.miracleData.filter((miracle: Miracle) => {
-	// 		return locationFilter.includes(miracle.location_name);
-	// 	});
-	//
-	// };
-	//
-	// const handleCountryTextInput = (event: Event) => {
-	// 	const target = event.target as HTMLInputElement;
-	//
-	// 	visibleCountries = target.value ? data.countryData.filter(country => {
-	// 		return country.name.match(`${target.value}.*`);
-	// 	}) : data.countryData;
-	// };
+	const updatedFilters = (updatedFilters: Filters) => {
+		updatedFilters.countries;
+		filters = { ...filters, ...updatedFilters };
+		console.log(filters);
+	};
+
+	const handleOnChangeLocationFilter = (event: Event) => {
+		const target = event.target as HTMLInputElement;
+
+		if (target.checked && !locationFilter.includes(target.value)) {
+			locationFilter.push(target.value);
+		} else {
+			let index: number = locationFilter.indexOf(target.value);
+			locationFilter.splice(index, 1);
+		}
+
+		visibleMiracles = locationFilter.length == 0 ? data.miracleData : data.miracleData.filter((miracle) => {
+			// country id will always be true.
+			return locationFilter.includes(miracle.country_id!);
+		});
+
+	};
+
+	const handleCountryTextInput = (event: Event) => {
+		const target = event.target as HTMLInputElement;
+
+		visibleCountries = target.value ? data.countryData.filter(country => {
+			return country.id.match(`${target.value}.*`);
+		}) : data.countryData;
+	};
 
 </script>
 
@@ -65,57 +77,60 @@
 </section>
 
 <section class="section-miracles bg-primary py-20">
-	<!--	<aside class="section-miracles-aside px-2">-->
-	<!--		<p class="text-2xl text-white mb-4">-->
-	<!--			Search-->
-	<!--		</p>-->
-	<!--		<div class="search-filters">-->
-	<!--			<div class="collapse collapse-arrow bg-base-200 mb-2">-->
-	<!--				<input type="checkbox" />-->
-	<!--				<div class="collapse-title text-xl font-medium">Countries</div>-->
-	<!--				<div class="collapse-content">-->
-	<!--					<input type="text" placeholder="Enter Country Here"-->
-	<!--								 class="country-text-input input input-bordered w-full max-w-xs"-->
-	<!--								 value={countryInput} oninput={handleCountryTextInput} />-->
-	<!--					<div class="country-list">-->
-	<!--						{#each visibleCountries as location }-->
-	<!--							<label id={location.id.toString()} for={location.name}-->
-	<!--										 class="country-label cursor-pointer label justify-normal">-->
-	<!--								<input name={location.name} type="checkbox" class="checkbox" value={location.name}-->
-	<!--											 data-item-id={location.id.toString()}-->
-	<!--											 onchange={handleOnChangeLocationFilter} />-->
-	<!--								<span class="label-text pl-2">{`${location.name} - ${location.id}`}</span>-->
-	<!--							</label>-->
-	<!--						{/each}-->
-	<!--					</div>-->
-	<!--				</div>-->
-	<!--			</div>-->
-	<!--		</div>-->
-	<!--	</aside>-->
-	<!--	<article class="section-miracles-list grid grid-cols-3 gap-10 auto-rows-max justify-items-center">-->
-	<!--		{#if visibleMiracles.length === 0 }-->
-	<!--			<p class="text-3xl text-white text-center">Sorry, no results here!</p>-->
-	<!--		{/if}-->
-	<!--		{#each visibleMiracles as miracle }-->
-	<!--			<article class="col-span-1 glass rounded">-->
-	<!--				<figure>-->
-	<!--					<img-->
-	<!--						src="https://stjohncc.org/images/eucharistchalice.png"-->
-	<!--						alt="found at https://stjohncc.org/sacrament-eucharist" />-->
-	<!--				</figure>-->
-	<!--				<div class="card-body text-white">-->
-	<!--					<h2 class="card-title">{miracle.title} &mdash; {miracle.occurrence_year} &mdash; {miracle.location_name}</h2>-->
-	<!--					<p>{miracle.blurb}</p>-->
-	<!--					<div class="card-actions justify-end">-->
-	<!--						<a href="/link_to_miracle" class="btn btn-tert">Learn more!</a>-->
-	<!--					</div>-->
-	<!--				</div>-->
-	<!--			</article>-->
-	<!--		{/each}-->
-	<!--	</article>-->
+	<Filter filterList={visibleCountries} input={countryInput} onUpdateFilters={updatedFilters} />
+	<aside class="section-miracles-aside px-2">
+		<p class="text-2xl text-white mb-4">
+			Search
+		</p>
+		<div class="search-filters">
+			<div class="collapse collapse-arrow bg-base-200 mb-2">
+				<input type="checkbox" />
+				<div class="collapse-title text-xl font-medium">Countries</div>
+				<div class="collapse-content">
+					<input type="text" placeholder="Enter Country Here"
+								 class="country-text-input input input-bordered w-full max-w-xs"
+								 value={countryInput} oninput={handleCountryTextInput} />
+					<div class="country-list">
+						{#each visibleCountries as location }
+							<label id={location.id.toString()} for={location.id}
+										 class="country-label cursor-pointer label justify-normal">
+								<input name={location.id} type="checkbox" class="checkbox" value={location.id}
+											 data-item-id={location.id.toString()}
+											 onchange={handleOnChangeLocationFilter} />
+								<span class="label-text pl-2">{location.name}</span>
+							</label>
+						{/each}
+					</div>
+				</div>
+			</div>
+		</div>
+	</aside>
+	<List dataList={visibleMiracles} />
+	} />
+	<article class="section-miracles-list grid grid-cols-3 gap-10 auto-rows-max justify-items-center">
+		{#if visibleMiracles.length === 0 }
+			<p class="text-3xl text-white text-center">Sorry, no results here!</p>
+		{/if}
+		{#each visibleMiracles as miracle }
+			<article class="col-span-1 glass rounded">
+				<figure>
+					<img
+						src="https://stjohncc.org/images/eucharistchalice.png"
+						alt="found at https://stjohncc.org/sacrament-eucharist" />
+				</figure>
+				<div class="card-body text-white">
+					<h2 class="card-title">{miracle.name} &mdash; {miracle.occurrence_year}</h2>
+					<p>{miracle.blurb}</p>
+					<div class="card-actions justify-end">
+						<a href="/link_to_miracle" class="btn btn-tert">Learn more!</a>
+					</div>
+				</div>
+			</article>
+		{/each}
+	</article>
 </section>
 
-<section class="section-footnotes py-20 bg-secondary-100 text-white">
+<section class="section-footnotes py-20 bg-secondary-100 text-white hidden">
 	<!-- Eventually we will break this into a footnote section-->
 	<article class="footnotes">
 		<aside>

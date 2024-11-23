@@ -74,7 +74,7 @@ export type Database = {
           language_id: string | null
           modified_at: string | null
           name: string | null
-          occurrance_year: number | null
+          occurrence_year: number | null
           quotes: string[] | null
           story: Json | null
         }
@@ -88,7 +88,7 @@ export type Database = {
           language_id?: string | null
           modified_at?: string | null
           name?: string | null
-          occurrance_year?: number | null
+          occurrence_year?: number | null
           quotes?: string[] | null
           story?: Json | null
         }
@@ -102,7 +102,7 @@ export type Database = {
           language_id?: string | null
           modified_at?: string | null
           name?: string | null
-          occurrance_year?: number | null
+          occurrence_year?: number | null
           quotes?: string[] | null
           story?: Json | null
         }
@@ -134,7 +134,7 @@ export type Database = {
           language_id: string | null
           modified_at: string | null
           name: string | null
-          occurrance_year: number | null
+          occurrence_year: number | null
           quotes: string[] | null
           story: Json | null
         }
@@ -148,7 +148,7 @@ export type Database = {
           language_id?: string | null
           modified_at?: string | null
           name?: string | null
-          occurrance_year?: number | null
+          occurrence_year?: number | null
           quotes?: string[] | null
           story?: Json | null
         }
@@ -162,7 +162,7 @@ export type Database = {
           language_id?: string | null
           modified_at?: string | null
           name?: string | null
-          occurrance_year?: number | null
+          occurrence_year?: number | null
           quotes?: string[] | null
           story?: Json | null
         }

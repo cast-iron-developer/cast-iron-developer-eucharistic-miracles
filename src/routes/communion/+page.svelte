@@ -1,5 +1,9 @@
 <script>
 import img from '$lib/images/carlo-hero.jpg';
+
+let { data } = $props();
+
+console.log(data);
 </script>
 
 <section>

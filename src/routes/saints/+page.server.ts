@@ -3,29 +3,29 @@ import { supabase } from '$lib/server/supabaseClient';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
-	const { data: miracleData, error: miracleError } = await supabase
-		.from('miracles')
+	const { data: saintData, error } = await supabase
+		.from('saints')
 		.select('*')
 		.eq('deleted', false)
 		.eq('draft', false);
 
-	if (miracleError) {
-		console.error(`Error fetching data from the Miracle table: ${miracleError}`);
-		return { miracleData: [], countryData: [] };
+	if (error) {
+		console.error(`Error fetching data from Saints table: ${saintData}`);
+		return { saintData: [], countryData: [] };
 	}
 
-	if (!miracleData || miracleData.length === 0) {
-		console.warn('No data found in Miracle table');
-		return { miracleData: [], countryData: [] };
+	if (!saintData || saintData.length === 0) {
+		console.warn('No data found in Saints table');
+		return { saintData: [], countryData: [] };
 	}
 
-	const countryKeys: string[] = miracleData
+	const countryKeys: string[] = saintData
 		.map((data) => data.country_id)
 		.filter((key) => key !== null && key !== undefined);
 
 	if (countryKeys.length === 0) {
-		console.warn('Could not get Country ID from Miracle Data.');
-		return { miracleData, countryData: [] };
+		console.warn('Could not get Country ID from Saint Data.');
+		return { saintData, countryData: [] };
 	}
 
 	const { data: countryData, error: countryError } = await supabase
@@ -35,16 +35,16 @@ export const load: PageServerLoad = async () => {
 
 	if (countryError) {
 		console.error(`Error fetching data from Countries: ${countryError}`);
-		return { miracleData, countryData: [] };
+		return { saintData, countryData: [] };
 	}
 
 	if (!countryData) {
 		console.warn('No matching rows found in Country Data for the given foreign keys');
-		return { miracleData, countryData: [] };
+		return { saintData, countryData: [] };
 	}
 
 	return {
-		miracleData,
+		saintData,
 		countryData
 	};
 };

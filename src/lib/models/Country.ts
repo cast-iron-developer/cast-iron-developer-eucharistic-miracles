@@ -1,8 +1,9 @@
 export interface Country {
-	id: number;
+	id: string;
 	created_at: string;
 	modified_at: string;
 	name: string;
 	deleted: boolean;
 	draft: boolean;
+	active: boolean;
 }

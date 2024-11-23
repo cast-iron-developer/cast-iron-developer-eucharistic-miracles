@@ -1,15 +1,14 @@
 export interface Miracle {
 	id: number;
 	created_at: string;
-	title: string;
+	modified_at: string;
+	name: string;
 	blurb: string;
-	description: string;
-	feast_day: string;
+	quotes: string[];
+	story: string;
 	occurrence_year: number;
-	occurrence_month: number;
 	draft: boolean;
 	deleted: boolean;
-	modified_at: string;
-	location_name: string;
-	short_blurb: number;
+	language_id: string;
+	country_id: string;
 }

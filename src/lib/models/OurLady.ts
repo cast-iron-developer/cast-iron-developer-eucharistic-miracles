@@ -1,5 +1,5 @@
-export interface Saint {
-	id: number;
+export interface OurLady {
+	id: string;
 	created_at: string;
 	modified_at: string;
 	name: string;
@@ -8,10 +8,8 @@ export interface Saint {
 	story: string;
 	draft: boolean;
 	deleted: boolean;
-	location_id: string;
+	language_id: string;
 	country_id: string;
-	canonized: boolean;
-	beatified: boolean;
 	feast_day: string;
-	miraculous_communion: boolean;
+	occurrence_year: string;
 }

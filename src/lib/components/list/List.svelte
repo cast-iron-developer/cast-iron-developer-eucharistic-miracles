@@ -2,9 +2,12 @@
 	import type { Database } from '$lib/server/database.types';
 
 	type Miracle = Database['public']['Tables']['miracles']['Row'];
-	let { dataList } = $props();
 
-	const list = dataList as Miracle[];
+	interface ListProps {
+		list: Miracle[];
+	}
+
+	let { list }: ListProps = $props();
 
 </script>
 
@@ -21,7 +24,7 @@
 			</figure>
 			<div class="card-body text-white">
 				<h2 class="card-title">{item.name} &mdash; {item.occurrence_year}</h2>
-				<p>{item.blurb}</p>
+				<p class="truncate ...">{item.blurb}</p>
 				<div class="card-actions justify-end">
 					<a href="/link_to_miracle" class="btn btn-tert">Learn more!</a>
 				</div>

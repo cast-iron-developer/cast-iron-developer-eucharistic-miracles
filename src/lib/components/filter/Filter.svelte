@@ -2,42 +2,42 @@
 	import type { Database } from '$lib/server/database.types';
 
 	type Country = Database['public']['Tables']['countries']['Row'];
-	type Filters = { countries?: string[] };
+	type ActiveFilters = { countryIds?: string[] };
 
 	interface FilterProps {
-		filterList: Country[];
+		filters: Country[];
 		input: string;
-		onUpdateFilters: (filters: Filters) => void;
+		onUpdateFilters: (activeFilters: ActiveFilters) => void;
 	}
 
-	let { filterList, input, onUpdateFilters }: FilterProps = $props();
+	let { filters, input, onUpdateFilters }: FilterProps = $props();
 
-	const list = filterList as Country[];
-	let locationFilters: string[] = $state([]);
-
-	console.log('Filter component: ', filterList);
+	let list: Country[] = $state(filters);
+	let locationFiltersIds: string[] = $state([]);
 
 	const handleFilterChange = (event: Event) => {
 		const target = event.target as HTMLInputElement;
 
-		if (target.checked && !locationFilters.includes(target.value)) {
-			locationFilters.push(target.value);
+		if (target.checked && !locationFiltersIds.includes(target.value)) {
+			locationFiltersIds.push(target.value);
 		} else {
-			let index: number = locationFilters.indexOf(target.value);
-			locationFilters.splice(index, 1);
+			let index: number = locationFiltersIds.indexOf(target.value);
+			locationFiltersIds.splice(index, 1);
 		}
 
-		onUpdateFilters({ countries: locationFilters });
+		console.log('updating filters');
+		onUpdateFilters({ countryIds: locationFiltersIds });
 	};
 
 	const handleTextFilterInput = (event: Event) => {
 		const target = event.target as HTMLInputElement;
 
-		locationFilters = target.value ? list.filter(item => {
-			return item.id.match(`${target.value}.*`);
-		}) : list;
+		list = target.value ? filters.filter(item => {
+			return item.name.match(new RegExp(`^${target.value}`, 'i'));
+		}) : filters;
 
-		onUpdateFilters({ countries: locationFilters });
+		// do not believe I need this here:
+		//onUpdateFilters({ countryIds: locationFiltersIds });
 	};
 </script>
 <aside class="section-miracles-aside px-2">
@@ -56,7 +56,9 @@
 					{#each list as item }
 						<label id={item.id.toString()} for={item.id}
 									 class="country-label cursor-pointer label justify-normal">
-							<input name={item.id} type="checkbox" class="checkbox" value={item.id}
+							<input name={item.id} type="checkbox" class="checkbox"
+										 value={item.id}
+										 checked={locationFiltersIds.includes(item.id)}
 										 data-item-id={item.id.toString()}
 										 onchange={handleFilterChange} />
 							<span class="label-text pl-2">{item.name}</span>

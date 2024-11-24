@@ -17,7 +17,7 @@ export type Database = {
           draft: boolean | null
           id: string
           modified_at: string | null
-          name: string | null
+          name: string
         }
         Insert: {
           active?: boolean | null
@@ -26,7 +26,7 @@ export type Database = {
           draft?: boolean | null
           id?: string
           modified_at?: string | null
-          name?: string | null
+          name: string
         }
         Update: {
           active?: boolean | null
@@ -35,73 +35,73 @@ export type Database = {
           draft?: boolean | null
           id?: string
           modified_at?: string | null
-          name?: string | null
+          name?: string
         }
         Relationships: []
       }
       languages: {
         Row: {
-          code: string | null
+          code: string
           created_at: string
           id: string
           modified_at: string | null
-          name: string | null
+          name: string
         }
         Insert: {
-          code?: string | null
+          code: string
           created_at?: string
           id?: string
           modified_at?: string | null
-          name?: string | null
+          name: string
         }
         Update: {
-          code?: string | null
+          code?: string
           created_at?: string
           id?: string
           modified_at?: string | null
-          name?: string | null
+          name?: string
         }
         Relationships: []
       }
       miracles: {
         Row: {
           blurb: string | null
-          country_id: string | null
+          country_id: string
           created_at: string
           deleted: boolean | null
           draft: boolean | null
           id: string
-          language_id: string | null
+          language_id: string
           modified_at: string | null
-          name: string | null
+          name: string
           occurrence_year: number | null
           quotes: string[] | null
           story: Json | null
         }
         Insert: {
           blurb?: string | null
-          country_id?: string | null
+          country_id?: string
           created_at?: string
           deleted?: boolean | null
           draft?: boolean | null
           id?: string
-          language_id?: string | null
+          language_id?: string
           modified_at?: string | null
-          name?: string | null
+          name: string
           occurrence_year?: number | null
           quotes?: string[] | null
           story?: Json | null
         }
         Update: {
           blurb?: string | null
-          country_id?: string | null
+          country_id?: string
           created_at?: string
           deleted?: boolean | null
           draft?: boolean | null
           id?: string
-          language_id?: string | null
+          language_id?: string
           modified_at?: string | null
-          name?: string | null
+          name?: string
           occurrence_year?: number | null
           quotes?: string[] | null
           story?: Json | null
@@ -126,42 +126,42 @@ export type Database = {
       miracles_translations: {
         Row: {
           blurb: string | null
-          country_id: string | null
+          country_id: string
           created_at: string
           deleted: boolean | null
           draft: boolean | null
           id: string
-          language_id: string | null
+          language_id: string
           modified_at: string | null
-          name: string | null
+          name: string
           occurrence_year: number | null
           quotes: string[] | null
           story: Json | null
         }
         Insert: {
           blurb?: string | null
-          country_id?: string | null
+          country_id?: string
           created_at?: string
           deleted?: boolean | null
           draft?: boolean | null
           id?: string
-          language_id?: string | null
+          language_id?: string
           modified_at?: string | null
-          name?: string | null
+          name: string
           occurrence_year?: number | null
           quotes?: string[] | null
           story?: Json | null
         }
         Update: {
           blurb?: string | null
-          country_id?: string | null
+          country_id?: string
           created_at?: string
           deleted?: boolean | null
           draft?: boolean | null
           id?: string
-          language_id?: string | null
+          language_id?: string
           modified_at?: string | null
-          name?: string | null
+          name?: string
           occurrence_year?: number | null
           quotes?: string[] | null
           story?: Json | null
@@ -194,7 +194,7 @@ export type Database = {
           id: string
           language_id: string | null
           modified_at: string | null
-          name: string | null
+          name: string
           occurrence_year: number | null
           quotes: string[] | null
           story: Json | null
@@ -209,7 +209,7 @@ export type Database = {
           id?: string
           language_id?: string | null
           modified_at?: string | null
-          name?: string | null
+          name: string
           occurrence_year?: number | null
           quotes?: string[] | null
           story?: Json | null
@@ -224,7 +224,7 @@ export type Database = {
           id?: string
           language_id?: string | null
           modified_at?: string | null
-          name?: string | null
+          name?: string
           occurrence_year?: number | null
           quotes?: string[] | null
           story?: Json | null
@@ -271,7 +271,7 @@ export type Database = {
           id: string
           language_id: string | null
           modified_at: string | null
-          name: string | null
+          name: string
           occurrence_year: number | null
           quotes: string[] | null
           story: Json | null
@@ -286,7 +286,7 @@ export type Database = {
           id?: string
           language_id?: string | null
           modified_at?: string | null
-          name?: string | null
+          name: string
           occurrence_year?: number | null
           quotes?: string[] | null
           story?: Json | null
@@ -301,7 +301,7 @@ export type Database = {
           id?: string
           language_id?: string | null
           modified_at?: string | null
-          name?: string | null
+          name?: string
           occurrence_year?: number | null
           quotes?: string[] | null
           story?: Json | null
@@ -351,7 +351,7 @@ export type Database = {
           language_id: string | null
           miraculous_communion: boolean | null
           modified_at: string | null
-          name: string | null
+          name: string
           quotes: string[] | null
           story: Json | null
         }
@@ -368,7 +368,7 @@ export type Database = {
           language_id?: string | null
           miraculous_communion?: boolean | null
           modified_at?: string | null
-          name?: string | null
+          name: string
           quotes?: string[] | null
           story?: Json | null
         }
@@ -385,7 +385,7 @@ export type Database = {
           language_id?: string | null
           miraculous_communion?: boolean | null
           modified_at?: string | null
-          name?: string | null
+          name?: string
           quotes?: string[] | null
           story?: Json | null
         }
@@ -420,7 +420,7 @@ export type Database = {
           language_id: string | null
           miraculous_communion: boolean | null
           modified_at: string | null
-          name: string | null
+          name: string
           quotes: string[] | null
           story: Json | null
         }
@@ -437,7 +437,7 @@ export type Database = {
           language_id?: string | null
           miraculous_communion?: boolean | null
           modified_at?: string | null
-          name?: string | null
+          name: string
           quotes?: string[] | null
           story?: Json | null
         }
@@ -454,7 +454,7 @@ export type Database = {
           language_id?: string | null
           miraculous_communion?: boolean | null
           modified_at?: string | null
-          name?: string | null
+          name?: string
           quotes?: string[] | null
           story?: Json | null
         }

@@ -6,6 +6,7 @@ export const load: PageServerLoad = async () => {
 	const { data: saintData, error } = await supabase
 		.from('saints')
 		.select('*')
+		.eq('miraculous_communion', false)
 		.eq('deleted', false)
 		.eq('draft', false);
 

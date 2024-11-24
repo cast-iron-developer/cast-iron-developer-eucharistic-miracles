@@ -2,6 +2,7 @@
 	import img from '$lib/images/Lanciano.jpg';
 	import Filter from '$lib/components/filter/Filter.svelte';
 	import List from '$lib/components/list/List.svelte';
+	import Citations from '$lib/components/citations/citations.svelte';
 	import type { Database } from '$lib/server/database.types';
 
 	type Miracle = Database['public']['Tables']['miracles']['Row'];
@@ -61,14 +62,7 @@
 	<List list={visibleMiracles} />
 </section>
 
-<section class="section-footnotes py-20 bg-secondary-100 text-white hidden">
-	<!-- Eventually we will break this into a footnote section-->
-	<article class="footnotes">
-		<aside>
-			<p class="text-3xl">Footnotes</p>
-		</aside>
-	</article>
-</section>
+<Citations />
 
 <style lang="scss">
   .section-intro {
@@ -86,15 +80,5 @@
     grid-template-columns: 15px 2fr 10fr 15px;
     grid-template-rows: max-content;
     gap: 1.5rem;
-  }
-
-  .section-footnotes {
-    display: grid;
-    grid-template-columns: 1fr 10fr 1fr;
-    grid-template-rows: max-content;
-
-    .footnotes {
-      grid-column: 2/3;
-    }
   }
 </style>

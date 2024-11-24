@@ -4,7 +4,7 @@
 
 <footer class="footer bg-primary text-base-content p-10 text-white">
 	<aside>
-		<a href="/" aria-label="Eucharist Logo">
+		<a href="/static" aria-label="Eucharist Logo">
 			<Icon height="3.5rem" width="3.5rem" />
 		</a>
 		<p>

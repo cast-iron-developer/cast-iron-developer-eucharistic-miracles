@@ -29,7 +29,7 @@
 					<li><a href="/communion">Communion</a></li>
 				</ul>
 			</div>
-			<a href="/" class="inline-flex items-center logo bg-primary hover:bg-none text-xl text-white p-1.5">
+			<a href="/static" class="inline-flex items-center logo bg-primary hover:bg-none text-xl text-white p-1.5">
 				<Icon height="2rem" width="2rem" />
 				<span class="ml-2 text-nowrap">Eucharistic Miracles</span>
 			</a>

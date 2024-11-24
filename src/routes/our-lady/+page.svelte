@@ -1,9 +1,31 @@
-<script>
+<script lang="ts">
 import img from '$lib/images/carlo-hero.jpg';
+import Filter from '$lib/components/filter/Filter.svelte';
+import List from '$lib/components/list/List.svelte';
+import Citations from '$lib/components/citations/citations.svelte';
+import type { Database } from '$lib/server/database.types';
+
+type OurLady = Database['public']['Tables']['our_lady']['Row'];
+type Country = Database['public']['Tables']['countries']['Row'];
+type ActiveFilters = { countryIds?: string[] };
 
 let { data } = $props();
+let activeFilters: ActiveFilters = $state({});
+let countryInput: string = $state('');
+let visibleCountries: Country[] = $state(data.countryData);
+let ourLadyData: OurLady[] = $derived.by(() => {
+	if (activeFilters.countryIds && activeFilters.countryIds.length > 0) {
+		return data.ourLadyData.filter(item => {
+			return activeFilters?.countryIds?.includes(item.country_id);
+		});
+	}
 
-console.log(data);
+	return data.ourLadyData;
+});
+
+const updatedFilters = (updatedFilters: ActiveFilters) => {
+	activeFilters = { ...activeFilters, ...updatedFilters };
+};
 </script>
 
 <section>
@@ -18,3 +40,20 @@ console.log(data);
 		</div>
 	</div>
 </section>
+
+<section class="section-miracles bg-primary py-20">
+	<Filter filters={visibleCountries} input={countryInput} onUpdateFilters={updatedFilters} />
+	<List list={ourLadyData} />
+</section>
+
+<Citations />
+
+<style lang="scss">
+
+.section-miracles {
+	display: grid;
+	grid-template-columns: 15px 2fr 10fr 15px;
+	grid-template-rows: max-content;
+	gap: 1.5rem;
+}
+</style>

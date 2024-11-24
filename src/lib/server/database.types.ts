@@ -186,13 +186,13 @@ export type Database = {
       our_lady: {
         Row: {
           blurb: string | null
-          country_id: string | null
+          country_id: string
           created_at: string
           deleted: boolean | null
           draft: boolean | null
           feast_day: string | null
           id: string
-          language_id: string | null
+          language_id: string
           modified_at: string | null
           name: string
           occurrence_year: number | null
@@ -201,13 +201,13 @@ export type Database = {
         }
         Insert: {
           blurb?: string | null
-          country_id?: string | null
+          country_id?: string
           created_at?: string
           deleted?: boolean | null
           draft?: boolean | null
           feast_day?: string | null
           id?: string
-          language_id?: string | null
+          language_id?: string
           modified_at?: string | null
           name: string
           occurrence_year?: number | null
@@ -216,13 +216,13 @@ export type Database = {
         }
         Update: {
           blurb?: string | null
-          country_id?: string | null
+          country_id?: string
           created_at?: string
           deleted?: boolean | null
           draft?: boolean | null
           feast_day?: string | null
           id?: string
-          language_id?: string | null
+          language_id?: string
           modified_at?: string | null
           name?: string
           occurrence_year?: number | null
@@ -263,13 +263,13 @@ export type Database = {
       our_lady_translations: {
         Row: {
           blurb: string | null
-          country_id: string | null
+          country_id: string
           created_at: string
           deleted: boolean | null
           draft: boolean | null
           feast_day: string | null
           id: string
-          language_id: string | null
+          language_id: string
           modified_at: string | null
           name: string
           occurrence_year: number | null
@@ -278,13 +278,13 @@ export type Database = {
         }
         Insert: {
           blurb?: string | null
-          country_id?: string | null
+          country_id?: string
           created_at?: string
           deleted?: boolean | null
           draft?: boolean | null
           feast_day?: string | null
           id?: string
-          language_id?: string | null
+          language_id?: string
           modified_at?: string | null
           name: string
           occurrence_year?: number | null
@@ -293,13 +293,13 @@ export type Database = {
         }
         Update: {
           blurb?: string | null
-          country_id?: string | null
+          country_id?: string
           created_at?: string
           deleted?: boolean | null
           draft?: boolean | null
           feast_day?: string | null
           id?: string
-          language_id?: string | null
+          language_id?: string
           modified_at?: string | null
           name?: string
           occurrence_year?: number | null
@@ -342,13 +342,13 @@ export type Database = {
           beatified: boolean | null
           blurb: string | null
           canonized: boolean | null
-          country_id: string | null
+          country_id: string
           created_at: string
           deleted: boolean | null
           draft: boolean | null
           feast_day: string | null
           id: string
-          language_id: string | null
+          language_id: string
           miraculous_communion: boolean | null
           modified_at: string | null
           name: string
@@ -359,13 +359,13 @@ export type Database = {
           beatified?: boolean | null
           blurb?: string | null
           canonized?: boolean | null
-          country_id?: string | null
+          country_id?: string
           created_at?: string
           deleted?: boolean | null
           draft?: boolean | null
           feast_day?: string | null
           id?: string
-          language_id?: string | null
+          language_id?: string
           miraculous_communion?: boolean | null
           modified_at?: string | null
           name: string
@@ -376,13 +376,13 @@ export type Database = {
           beatified?: boolean | null
           blurb?: string | null
           canonized?: boolean | null
-          country_id?: string | null
+          country_id?: string
           created_at?: string
           deleted?: boolean | null
           draft?: boolean | null
           feast_day?: string | null
           id?: string
-          language_id?: string | null
+          language_id?: string
           miraculous_communion?: boolean | null
           modified_at?: string | null
           name?: string

@@ -21,8 +21,8 @@ export const load: PageServerLoad = async () => {
 	}
 
 	const countryKeys: string[] = communionData
-		.map((data) => data.country_id)
-		.filter((key) => key !== null && key !== undefined);
+		.filter((key) => key !== null && key !== undefined)
+		.map((data) => data.country_id);
 
 	if (countryKeys.length === 0) {
 		console.warn('Could not get Country ID from Miracle Data.');

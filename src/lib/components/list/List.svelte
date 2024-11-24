@@ -2,9 +2,11 @@
 	import type { Database } from '$lib/server/database.types';
 
 	type Miracle = Database['public']['Tables']['miracles']['Row'];
+	type OurLady = Database['public']['Tables']['our_lady']['Row'];
+	type Saint = Database['public']['Tables']['saints']['Row'];
 
 	interface ListProps {
-		list: Miracle[];
+		list: Miracle[] | OurLady[] | Saint[];
 	}
 
 	let { list }: ListProps = $props();
@@ -23,7 +25,7 @@
 					alt="found at https://stjohncc.org/sacrament-eucharist" />
 			</figure>
 			<div class="card-body text-white">
-				<h2 class="card-title">{item.name} &mdash; {item.occurrence_year}</h2>
+				<h2 class="card-title">{item.name}</h2>
 				<p>{item.blurb}</p>
 				<div class="card-actions justify-end">
 					<a href="/link_to_miracle" class="btn btn-tert">Learn more!</a>

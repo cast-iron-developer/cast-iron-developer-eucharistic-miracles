@@ -1,7 +1,8 @@
 <script>
 	import '../app.scss';
-	import Navbar from '$lib/components/globals/navigation/navbar.svelte'
-	import Footer from '$lib/components/globals/footer/footer.svelte'
+	import Navbar from '$lib/components/navigation/navbar.svelte';
+	import Footer from '$lib/components/footer/footer.svelte';
+
 	let { children } = $props();
 </script>
 

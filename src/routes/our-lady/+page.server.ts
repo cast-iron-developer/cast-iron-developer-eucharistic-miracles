@@ -11,17 +11,17 @@ export const load: PageServerLoad = async () => {
 
 	if (ourLadyError) {
 		console.error(`Error fetching data from Our Lady's table: ${ourLadyError}`);
-		return { miracleData: [], countryData: [] };
+		return { ourLadyData: [], countryData: [] };
 	}
 
 	if (!ourLadyData || ourLadyData.length === 0) {
 		console.warn("No data found in Our Lady's table");
-		return { miracleData: [], countryData: [] };
+		return { ourLadyData: [], countryData: [] };
 	}
 
 	const countryKeys: string[] = ourLadyData
-		.map((data) => data.country_id)
-		.filter((key) => key !== null && key !== undefined);
+		.filter((key) => key !== null && key !== undefined)
+		.map((data) => data.country_id);
 
 	if (countryKeys.length === 0) {
 		console.warn("Could not get Country ID from Our Lady's Data.");

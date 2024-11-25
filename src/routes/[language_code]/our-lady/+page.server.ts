@@ -2,10 +2,11 @@ import { supabase } from '$lib/server/supabaseClient';
 
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async ({ params }) => {
 	const { data: ourLadyData, error: ourLadyError } = await supabase
 		.from('our_lady')
 		.select('*')
+		.eq('language_code', params.language_code)
 		.eq('deleted', false)
 		.eq('draft', false);
 

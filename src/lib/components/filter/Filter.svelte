@@ -74,13 +74,13 @@
   .section-miracles-aside {
     grid-column: 2/3;
 
-    //.country-list {
-    //  display: flex;
-    //  flex-direction: column;
-    //
-    //  .country-label:has(input:checked) {
-    //    order: -9999;
-    //  }
-    //}
+    .country-list {
+      display: flex;
+      flex-direction: column;
+
+      .country-label:has(input:checked) {
+        order: -9999;
+      }
+    }
   }
 </style>

@@ -65,45 +65,51 @@ export type Database = {
       }
       miracles: {
         Row: {
+          base_translation: boolean | null
           blurb: string | null
           country_id: string
           created_at: string
           deleted: boolean | null
           draft: boolean | null
           id: string
-          language_id: string
+          language_code: string | null
           modified_at: string | null
           name: string
           occurrence_year: number | null
           quotes: string[] | null
+          slug: string | null
           story: Json | null
         }
         Insert: {
+          base_translation?: boolean | null
           blurb?: string | null
           country_id?: string
           created_at?: string
           deleted?: boolean | null
           draft?: boolean | null
           id?: string
-          language_id?: string
+          language_code?: string | null
           modified_at?: string | null
           name: string
           occurrence_year?: number | null
           quotes?: string[] | null
+          slug?: string | null
           story?: Json | null
         }
         Update: {
+          base_translation?: boolean | null
           blurb?: string | null
           country_id?: string
           created_at?: string
           deleted?: boolean | null
           draft?: boolean | null
           id?: string
-          language_id?: string
+          language_code?: string | null
           modified_at?: string | null
           name?: string
           occurrence_year?: number | null
           quotes?: string[] | null
+          slug?: string | null
           story?: Json | null
         }
         Relationships: [
@@ -115,76 +121,17 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "miracles_language_id_fkey"
-            columns: ["language_id"]
+            foreignKeyName: "miracles_language_code_fkey"
+            columns: ["language_code"]
             isOneToOne: false
             referencedRelation: "languages"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      miracles_translations: {
-        Row: {
-          blurb: string | null
-          country_id: string
-          created_at: string
-          deleted: boolean | null
-          draft: boolean | null
-          id: string
-          language_id: string
-          modified_at: string | null
-          name: string
-          occurrence_year: number | null
-          quotes: string[] | null
-          story: Json | null
-        }
-        Insert: {
-          blurb?: string | null
-          country_id?: string
-          created_at?: string
-          deleted?: boolean | null
-          draft?: boolean | null
-          id?: string
-          language_id?: string
-          modified_at?: string | null
-          name: string
-          occurrence_year?: number | null
-          quotes?: string[] | null
-          story?: Json | null
-        }
-        Update: {
-          blurb?: string | null
-          country_id?: string
-          created_at?: string
-          deleted?: boolean | null
-          draft?: boolean | null
-          id?: string
-          language_id?: string
-          modified_at?: string | null
-          name?: string
-          occurrence_year?: number | null
-          quotes?: string[] | null
-          story?: Json | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "miracles_translations_country_id_fkey"
-            columns: ["country_id"]
-            isOneToOne: false
-            referencedRelation: "countries"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "miracles_translations_language_id_fkey"
-            columns: ["language_id"]
-            isOneToOne: false
-            referencedRelation: "languages"
-            referencedColumns: ["id"]
+            referencedColumns: ["code"]
           },
         ]
       }
       our_lady: {
         Row: {
+          base_translation: boolean | null
           blurb: string | null
           country_id: string
           created_at: string
@@ -192,14 +139,16 @@ export type Database = {
           draft: boolean | null
           feast_day: string | null
           id: string
-          language_id: string
+          language_code: string | null
           modified_at: string | null
           name: string
           occurrence_year: number | null
           quotes: string[] | null
+          slug: string | null
           story: Json | null
         }
         Insert: {
+          base_translation?: boolean | null
           blurb?: string | null
           country_id?: string
           created_at?: string
@@ -207,14 +156,16 @@ export type Database = {
           draft?: boolean | null
           feast_day?: string | null
           id?: string
-          language_id?: string
+          language_code?: string | null
           modified_at?: string | null
           name: string
           occurrence_year?: number | null
           quotes?: string[] | null
+          slug?: string | null
           story?: Json | null
         }
         Update: {
+          base_translation?: boolean | null
           blurb?: string | null
           country_id?: string
           created_at?: string
@@ -222,11 +173,12 @@ export type Database = {
           draft?: boolean | null
           feast_day?: string | null
           id?: string
-          language_id?: string
+          language_code?: string | null
           modified_at?: string | null
           name?: string
           occurrence_year?: number | null
           quotes?: string[] | null
+          slug?: string | null
           story?: Json | null
         }
         Relationships: [
@@ -238,107 +190,17 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "our_lady_country_id_fkey1"
-            columns: ["country_id"]
-            isOneToOne: false
-            referencedRelation: "countries"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "our_lady_language_id_fkey"
-            columns: ["language_id"]
+            foreignKeyName: "our_lady_language_code_fkey"
+            columns: ["language_code"]
             isOneToOne: false
             referencedRelation: "languages"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "our_lady_language_id_fkey1"
-            columns: ["language_id"]
-            isOneToOne: false
-            referencedRelation: "languages"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      our_lady_translations: {
-        Row: {
-          blurb: string | null
-          country_id: string
-          created_at: string
-          deleted: boolean | null
-          draft: boolean | null
-          feast_day: string | null
-          id: string
-          language_id: string
-          modified_at: string | null
-          name: string
-          occurrence_year: number | null
-          quotes: string[] | null
-          story: Json | null
-        }
-        Insert: {
-          blurb?: string | null
-          country_id?: string
-          created_at?: string
-          deleted?: boolean | null
-          draft?: boolean | null
-          feast_day?: string | null
-          id?: string
-          language_id?: string
-          modified_at?: string | null
-          name: string
-          occurrence_year?: number | null
-          quotes?: string[] | null
-          story?: Json | null
-        }
-        Update: {
-          blurb?: string | null
-          country_id?: string
-          created_at?: string
-          deleted?: boolean | null
-          draft?: boolean | null
-          feast_day?: string | null
-          id?: string
-          language_id?: string
-          modified_at?: string | null
-          name?: string
-          occurrence_year?: number | null
-          quotes?: string[] | null
-          story?: Json | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "our_lady_translations_country_id_fkey"
-            columns: ["country_id"]
-            isOneToOne: false
-            referencedRelation: "countries"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "our_lady_translations_country_id_fkey1"
-            columns: ["country_id"]
-            isOneToOne: false
-            referencedRelation: "countries"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "our_lady_translations_language_id_fkey"
-            columns: ["language_id"]
-            isOneToOne: false
-            referencedRelation: "languages"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "our_lady_translations_language_id_fkey1"
-            columns: ["language_id"]
-            isOneToOne: false
-            referencedRelation: "languages"
-            referencedColumns: ["id"]
+            referencedColumns: ["code"]
           },
         ]
       }
       saints: {
         Row: {
+          base_translation: boolean | null
           beatified: boolean | null
           blurb: string | null
           canonized: boolean | null
@@ -348,14 +210,16 @@ export type Database = {
           draft: boolean | null
           feast_day: string | null
           id: string
-          language_id: string
+          language_code: string | null
           miraculous_communion: boolean | null
           modified_at: string | null
           name: string
           quotes: string[] | null
+          slug: string | null
           story: Json | null
         }
         Insert: {
+          base_translation?: boolean | null
           beatified?: boolean | null
           blurb?: string | null
           canonized?: boolean | null
@@ -365,14 +229,16 @@ export type Database = {
           draft?: boolean | null
           feast_day?: string | null
           id?: string
-          language_id?: string
+          language_code?: string | null
           miraculous_communion?: boolean | null
           modified_at?: string | null
           name: string
           quotes?: string[] | null
+          slug?: string | null
           story?: Json | null
         }
         Update: {
+          base_translation?: boolean | null
           beatified?: boolean | null
           blurb?: string | null
           canonized?: boolean | null
@@ -382,80 +248,12 @@ export type Database = {
           draft?: boolean | null
           feast_day?: string | null
           id?: string
-          language_id?: string
+          language_code?: string | null
           miraculous_communion?: boolean | null
           modified_at?: string | null
           name?: string
           quotes?: string[] | null
-          story?: Json | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "saints_country_id_fkey1"
-            columns: ["country_id"]
-            isOneToOne: false
-            referencedRelation: "countries"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "saints_language_id_fkey1"
-            columns: ["language_id"]
-            isOneToOne: false
-            referencedRelation: "languages"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      saints_translations: {
-        Row: {
-          beatified: boolean | null
-          blurb: string | null
-          canonized: boolean | null
-          country_id: string | null
-          created_at: string
-          deleted: boolean | null
-          draft: boolean | null
-          feast_day: string | null
-          id: string
-          language_id: string | null
-          miraculous_communion: boolean | null
-          modified_at: string | null
-          name: string
-          quotes: string[] | null
-          story: Json | null
-        }
-        Insert: {
-          beatified?: boolean | null
-          blurb?: string | null
-          canonized?: boolean | null
-          country_id?: string | null
-          created_at?: string
-          deleted?: boolean | null
-          draft?: boolean | null
-          feast_day?: string | null
-          id?: string
-          language_id?: string | null
-          miraculous_communion?: boolean | null
-          modified_at?: string | null
-          name: string
-          quotes?: string[] | null
-          story?: Json | null
-        }
-        Update: {
-          beatified?: boolean | null
-          blurb?: string | null
-          canonized?: boolean | null
-          country_id?: string | null
-          created_at?: string
-          deleted?: boolean | null
-          draft?: boolean | null
-          feast_day?: string | null
-          id?: string
-          language_id?: string | null
-          miraculous_communion?: boolean | null
-          modified_at?: string | null
-          name?: string
-          quotes?: string[] | null
+          slug?: string | null
           story?: Json | null
         }
         Relationships: [
@@ -467,11 +265,11 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "saints_language_id_fkey"
-            columns: ["language_id"]
+            foreignKeyName: "saints_language_code_fkey"
+            columns: ["language_code"]
             isOneToOne: false
             referencedRelation: "languages"
-            referencedColumns: ["id"]
+            referencedColumns: ["code"]
           },
         ]
       }
@@ -480,7 +278,36 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      slugify: {
+        Args: {
+          value: string
+        }
+        Returns: string
+      }
+      slugify_our_lady: {
+        Args: {
+          value: string
+        }
+        Returns: string
+      }
+      slugify_saints: {
+        Args: {
+          value: string
+        }
+        Returns: string
+      }
+      unaccent: {
+        Args: {
+          "": string
+        }
+        Returns: string
+      }
+      unaccent_init: {
+        Args: {
+          "": unknown
+        }
+        Returns: unknown
+      }
     }
     Enums: {
       [_ in never]: never

@@ -1,28 +1,26 @@
-# sv
+# Eucharistic Miracles
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+In honor of Bl. Carlo Acutis and his pursuit of the conversion of hearts and salvation of souls.
 
-## Creating a project
+## Built with
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
+- Sveltekit
+- TailwindCSS
+- DaisyUI
+- Supabase
+- [Mookaroo](https://mockaroo.com)
+- Coolors
+- [Squoosh](https://squoosh.app/)
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
 ```bash
-npm run dev
+yarn install
+
+yarn run dev
 
 # or start the server and open the app in a new browser tab
-npm run dev -- --open
+yarn run dev -- --open
 ```
 
 ## Building
@@ -33,6 +31,7 @@ To create a production version of your app:
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+## Generating Your Types
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+When creating Supabase tables you can easily and seamlessly add those types to your local build folowing the steps
+here: [Generating Typescript Types](https://supabase.com/docs/guides/api/rest/generating-types)

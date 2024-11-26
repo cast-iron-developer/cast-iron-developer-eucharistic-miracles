@@ -57,7 +57,8 @@
 	</div>
 </section>
 
-<section class="section-miracles bg-primary py-20">
+<section
+	class="section-list-content bg-primary py-20 from-sm:grid from-sm:grid-cols-[15px_2fr_10fr_15px] from-sm:grid-rows-[max-content] from-sm:gap-6">
 	<Filter filters={visibleCountries} input={countryInput} onUpdateFilters={updatedFilters} />
 	<List list={visibleMiracles} />
 </section>
@@ -73,12 +74,5 @@
     .miracles-hero {
       grid-column: 2/3;
     }
-  }
-
-  .section-miracles {
-    display: grid;
-    grid-template-columns: 15px 2fr 10fr 15px;
-    grid-template-rows: max-content;
-    gap: 1.5rem;
   }
 </style>

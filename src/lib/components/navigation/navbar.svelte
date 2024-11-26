@@ -27,9 +27,10 @@
 					<li><a href="/our-lady">Our Lady</a></li>
 					<li><a href="/saints">Saints</a></li>
 					<li><a href="/communion">Communion</a></li>
+					<li><a href="/about-carlo">About Carlo</a></li>
 				</ul>
 			</div>
-			<a href="/static" class="inline-flex items-center logo bg-primary hover:bg-none text-xl text-white p-1.5">
+			<a href="/" class="inline-flex items-center logo bg-primary hover:bg-none text-xl text-white p-1.5">
 				<Icon height="2rem" width="2rem" />
 				<span class="ml-2 text-nowrap">Eucharistic Miracles</span>
 			</a>

@@ -11,12 +11,12 @@ export const load: PageServerLoad = async ({ params }) => {
 		.eq('draft', false);
 
 	if (miracleError) {
-		console.error(`Error fetching data from the Miracle table: ${miracleError}`);
+		console.error('Error fetching Miracle data.', miracleError);
 		return { miracleData: [], countryData: [] };
 	}
 
 	if (!miracleData || miracleData.length === 0) {
-		console.warn('No data found in Miracle table');
+		console.warn('No Miracle data was found.');
 		return { miracleData: [], countryData: [] };
 	}
 
@@ -35,12 +35,12 @@ export const load: PageServerLoad = async ({ params }) => {
 		.in('id', countryKeys);
 
 	if (countryError) {
-		console.error(`Error fetching data from Countries: ${countryError}`);
+		console.error('Error fetching Country data.', countryError);
 		return { miracleData, countryData: [] };
 	}
 
 	if (!countryData) {
-		console.warn('No matching rows found in Country Data for the given foreign keys');
+		console.warn('No Country data was found.');
 		return { miracleData, countryData: [] };
 	}
 

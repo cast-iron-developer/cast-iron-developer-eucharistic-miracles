@@ -27,9 +27,10 @@ export default {
 				'only-xl': { min: '1280px', max: '1535px' },
 				// => @media (min-width: 1280px and max-width: 1535px) { ... }
 
-				'only-2xl': { min: '1536px' },
-
 				// additional media queries because I like flexibility
+				'to-xs': { max: '639px' },
+				// => @media (max-width: 639px) { ... }
+
 				'to-sm': { max: '767px' },
 				// => @media (max-width: 767px) { ... }
 
@@ -42,23 +43,21 @@ export default {
 				'to-xl': { max: '1535px' },
 				// => @media (max-width: 1535px) { ... }
 
-				'to-2xl': { min: '1536px' },
-
 				// Starting the inverse of the standard tailwind media queries bc i hate them.
-				'max-xs': { max: '639px' },
+				'from-xs': { min: '640px' },
+				// => @media (max-width: 640px) { ... }
 
-				'max-sm': { max: '767px' },
-				// => @media (max-width: 767px) { ... }
+				'from-sm': { min: '768px' },
+				// => @media (max-width: 768px) { ... }
 
-				'max-md': { max: '1023px' },
-				// => @media (max-width: 1023px) { ... }
+				'from-md': { min: '1024px' },
+				// => @media (max-width: 1024px) { ... }
 
-				'max-lg': { max: '1279px' },
-				// => @media (max-width: 1279px) { ... }
+				'from-lg': { min: '1280px' },
+				// => @media (max-width: 1280px) { ... }
 
-				'max-xl': { max: '1535px' },
-				// => @media (max-width: 1535px) { ... }
-				'max-2xl': { min: '1536px' }
+				'from-xl': { min: '1536px' }
+				// => @media (max-width: 1536px) { ... }
 			},
 			dropShadow: {
 				light: '0 0 .75rem rgba(255, 255, 255, .7)',

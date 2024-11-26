@@ -42,7 +42,7 @@ const updatedFilters = (updatedFilters: ActiveFilters) => {
 	</div>
 </section>
 
-<section class="section-communion bg-primary py-20">
+<section class="section-communion bg-primary py-20 ">
 	<Filter filters={visibleCountries} input={countryInput} onUpdateFilters={updatedFilters} />
 	<List list={visibleSaints} />
 </section>

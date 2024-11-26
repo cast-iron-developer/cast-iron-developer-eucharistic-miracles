@@ -1,5 +1,8 @@
 <script>
 	import img from '$lib/images/carlo-hero.jpg'
+
+	let { data } = $props();
+
 </script>
 <svelte:head>
 	<title>Eucharistic Miracles of the World!</title>
@@ -14,6 +17,17 @@
 		<div class="hero-content text-neutral-content text-center">
 			<div class="max-w-md">
 				<p class="mb-5 text-3xl font-bold">"To always be close to Jesus, that’s my life plan."</p>
+				<p class="text-xl font-bold">Select a language:</p>
+				{#if data.languageData}
+					<ul class="flex flex-wrap justify-around">
+					{#each data.languageData as item}
+						<li class="m-2">
+							<a class="visited:text-purple-600 focus-visible:ring hover:bg-secondary-100 p-2 rounded" href={`/${item.code}/`}>{item.name}</a>
+						</li>
+					{/each}
+					</ul>
+
+				{/if}
 			</div>
 		</div>
 	</div>

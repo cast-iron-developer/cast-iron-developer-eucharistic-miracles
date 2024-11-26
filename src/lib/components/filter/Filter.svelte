@@ -25,7 +25,6 @@
 			locationFiltersIds.splice(index, 1);
 		}
 
-		console.log('updating filters');
 		onUpdateFilters({ countryIds: locationFiltersIds });
 	};
 
@@ -40,12 +39,12 @@
 		//onUpdateFilters({ countryIds: locationFiltersIds });
 	};
 </script>
-<aside class="section-miracles-aside px-2">
-	<p class="text-2xl text-white mb-4">
+<aside class="section-filters-aside px-2">
+	<p class="text-2xl text-white from-sm:mb-4 to-sm:mb-8 to-sm:m-auto to-sm:text-center">
 		Search
 	</p>
-	<div class="search-filters">
-		<div class="collapse collapse-arrow bg-base-200 mb-2">
+	<div class="search-filters to-sm:max-w-fit to-sm:mx-auto to-sm:margin">
+		<div class="collapse collapse-arrow bg-base-200 from-sm:mb-2 to-sm:mb-8">
 			<input type="checkbox" />
 			<div class="collapse-title text-xl font-medium">Countries</div>
 			<div class="collapse-content">
@@ -71,7 +70,7 @@
 </aside>
 
 <style lang="scss">
-  .section-miracles-aside {
+  .section-filters-aside {
     grid-column: 2/3;
 
     .country-list {

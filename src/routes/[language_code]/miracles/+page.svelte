@@ -58,7 +58,7 @@
 </section>
 
 <section
-	class="section-list-content bg-primary py-20 from-sm:grid from-sm:grid-cols-[15px_2fr_10fr_15px] from-sm:grid-rows-[max-content] from-sm:gap-6">
+	class="section-list-content bg-primary py-20 from-md:grid from-sm:grid-cols-[15px_2fr_10fr_15px] from-sm:grid-rows-[max-content] from-sm:gap-6">
 	<Filter filters={visibleCountries} input={countryInput} onUpdateFilters={updatedFilters} />
 	<List list={visibleMiracles} />
 </section>

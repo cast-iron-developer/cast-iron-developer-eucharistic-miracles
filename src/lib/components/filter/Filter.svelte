@@ -40,11 +40,11 @@
 	};
 </script>
 <aside class="section-filters-aside px-2">
-	<p class="text-2xl text-white from-sm:mb-4 to-sm:mb-8 to-sm:m-auto to-sm:text-center">
+	<p class="text-2xl text-white from-md:mb-4 to-md:mb-8 to-md:m-auto to-md:text-center">
 		Search
 	</p>
-	<div class="search-filters to-sm:max-w-fit to-sm:mx-auto to-sm:margin">
-		<div class="collapse collapse-arrow bg-base-200 from-sm:mb-2 to-sm:mb-8">
+	<div class="search-filters to-md:max-w-fit to-md:mx-auto to-md:margin">
+		<div class="collapse collapse-arrow bg-base-200 from-md:mb-2 to-md:mb-8">
 			<input type="checkbox" />
 			<div class="collapse-title text-xl font-medium">Countries</div>
 			<div class="collapse-content">

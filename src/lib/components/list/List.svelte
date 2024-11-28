@@ -12,8 +12,6 @@
 	let { list }: ListProps = $props();
 
 	const truncateString = (str: string, maxLength: number) => {
-		console.log(str);
-		console.log(maxLength);
 		if (str.length >= maxLength) {
 			return str.substring(0, maxLength - 3) + '...';
 		}
@@ -24,13 +22,13 @@
 </script>
 
 <article
-	class="section-list from-sm:grid from-sm:col-start-3 from-sm:col-span-1 from-sm:gap-10 from-sm:auto-rows-max from-sm:justify-items-center only-md:grid-cols-2 only-lg:grid-cols-2 only-xl:grid-cols-3 from-xl:grid-cols-4 to-sm:flex to-sm:flex-row to-sm:flex-wrap to-sm:justify-around">
+	class="section-list from-md:grid from-md:col-start-3 from-md:col-span-1 from-md:gap-10 from-md:auto-rows-max from-md:justify-items-center only-md:grid-cols-2 only-lg:grid-cols-2 only-xl:grid-cols-3 from-2xl:grid-cols-4 to-md:flex to-md:flex-row to-md:flex-wrap to-md:justify-around">
 	{#if list.length === 0 }
 		<p class="text-3xl text-white text-center">Sorry, no results here!</p>
 	{/if}
 	{#each list as item }
 		<div
-			class="from-sm:max-w-sm to-sm:max-w-64 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+			class="from-md:max-w-sm to-md:max-w-64 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
 			<a href="/">
 				<img class="rounded-t-lg" src="https://stjohncc.org/images/eucharistchalice.png"
 						 alt="found at https://stjohncc.org/sacrament-eucharist" />

@@ -1,17 +1,17 @@
 import { supabase } from '$lib/server/supabaseClient';
 import type { PageServerLoad } from './$types';
+import { genericApiCall } from '$lib/utils/apiUtils';
 
-export const load: PageServerLoad = async () => {
-	const { data: languageData, error } = await supabase.from('languages').select('*');
-
-	if (error) {
-		console.log('Error fetching Language data.', error);
-		return { languageData: [] };
+export const load: PageServerLoad = async ({ params, url }) => {
+	const [languageData, languageError] = await genericApiCall(
+		await supabase.from('languages').select('*')
+	);
+	if (languageError) {
+		console.error('Error fetching Language data.', languageError);
 	}
 
 	if (!languageData || languageData.length === 0) {
-		console.log('No Language data found.');
-		return { languageData: [] };
+		console.error('No Language data found.');
 	}
 
 	return {

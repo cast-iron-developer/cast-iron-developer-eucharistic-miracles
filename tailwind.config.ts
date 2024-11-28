@@ -9,6 +9,16 @@ export default {
 
 	plugins: [require('daisyui'), typography, containerQueries, aspectRatio],
 	theme: {
+		container: {
+			center: true,
+			padding: {
+				DEFAULT: '1rem',
+				sm: '2rem',
+				lg: '4rem',
+				xl: '5rem',
+				'2xl': '6rem'
+			}
+		},
 		fontFamily: {
 			montserrat: ['Montserrat', 'sans-serif']
 		},
@@ -28,35 +38,35 @@ export default {
 				// => @media (min-width: 1280px and max-width: 1535px) { ... }
 
 				// additional media queries because I like flexibility
-				'to-xs': { max: '639px' },
+				'to-sm': { max: '639px' },
 				// => @media (max-width: 639px) { ... }
 
-				'to-sm': { max: '767px' },
+				'to-md': { max: '767px' },
 				// => @media (max-width: 767px) { ... }
 
-				'to-md': { max: '1023px' },
+				'to-lg': { max: '1023px' },
 				// => @media (max-width: 1023px) { ... }
 
-				'to-lg': { max: '1279px' },
+				'to-xl': { max: '1279px' },
 				// => @media (max-width: 1279px) { ... }
 
-				'to-xl': { max: '1535px' },
+				'to-2xl': { max: '1535px' },
 				// => @media (max-width: 1535px) { ... }
 
 				// Starting the inverse of the standard tailwind media queries bc i hate them.
-				'from-xs': { min: '640px' },
+				'from-sm': { min: '640px' },
 				// => @media (max-width: 640px) { ... }
 
-				'from-sm': { min: '768px' },
+				'from-md': { min: '768px' },
 				// => @media (max-width: 768px) { ... }
 
-				'from-md': { min: '1024px' },
+				'from-lg': { min: '1024px' },
 				// => @media (max-width: 1024px) { ... }
 
-				'from-lg': { min: '1280px' },
+				'from-xl': { min: '1280px' },
 				// => @media (max-width: 1280px) { ... }
 
-				'from-xl': { min: '1536px' }
+				'from-2xl': { min: '1536px' }
 				// => @media (max-width: 1536px) { ... }
 			},
 			dropShadow: {

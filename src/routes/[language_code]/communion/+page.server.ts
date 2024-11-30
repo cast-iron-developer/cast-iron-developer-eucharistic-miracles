@@ -1,15 +1,21 @@
 import { supabase } from '$lib/server/supabaseClient';
 
 import type { PageServerLoad } from './$types';
+import type { SaintWithCountry } from '$lib/utils/Types/SaintWithCountry';
+import { genericApiCall } from '$lib/utils/apiUtils';
+import type { Tables } from '$lib/server/database.types';
 
 export const load: PageServerLoad = async ({ params }) => {
-	const { data: communionData, error: communionError } = await supabase
-		.from('saints')
-		.select('*')
-		.eq('language_code', params.language_code)
-		.eq('miraculous_communion', true)
-		.eq('deleted', false)
-		.eq('draft', false);
+	const [communionData, communionError] = await genericApiCall(
+		supabase
+			.from('saints')
+			.select(`*, countries (name)`)
+			.eq('language_code', params.language_code)
+			.eq('miraculous_communion', true)
+			.eq('deleted', false)
+			.eq('draft', false)
+			.returns<SaintWithCountry>()
+	);
 
 	if (communionError) {
 		console.error(`Error fetching data from the Communion table: ${communionError}`);
@@ -22,8 +28,8 @@ export const load: PageServerLoad = async ({ params }) => {
 	}
 
 	const countryKeys: string[] = communionData
-		.filter((key) => key !== null && key !== undefined)
-		.map((data) => data.country_id);
+		.filter((key: string) => key !== null && key !== undefined)
+		.map((data: Tables<'saints'>) => data.country_id);
 
 	if (countryKeys.length === 0) {
 		console.warn('Could not get Country ID from Miracle Data.');

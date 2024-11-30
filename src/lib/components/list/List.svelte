@@ -1,12 +1,10 @@
 <script lang="ts">
-	import type { Database } from '$lib/server/database.types';
-
-	type Miracle = Database['public']['Tables']['miracles']['Row'];
-	type OurLady = Database['public']['Tables']['our_lady']['Row'];
-	type Saint = Database['public']['Tables']['saints']['Row'];
+	import type { MiracleWithCountry } from '$lib/utils/Types/MiracleWithCountry';
+	import type { OurLadyWithCountry } from '$lib/utils/Types/OurLadyWithCountry';
+	import type { SaintWithCountry } from '$lib/utils/Types/SaintWithCountry';
 
 	interface ListProps {
-		list: Miracle[] | OurLady[] | Saint[];
+		list: MiracleWithCountry[] | OurLadyWithCountry[] | SaintWithCountry[];
 	}
 
 	let { list }: ListProps = $props();
@@ -28,12 +26,13 @@
 	{/if}
 	{#each list as item }
 		<div
-			class="from-md:max-w-sm to-md:max-w-64 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+			class="from-md:max-w-sm to-md:max-w-64 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 lightShadow2xl">
 			<a href="/">
 				<img class="rounded-t-lg" src="https://stjohncc.org/images/eucharistchalice.png"
 						 alt="found at https://stjohncc.org/sacrament-eucharist" />
 				<div class="p-5">
-					<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{item.name}</h5>
+					<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{item.name}
+						&mdash; {item.countries?.name}</h5>
 					<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
 						{#if item.blurb}
 							{truncateString(item.blurb, 100)}

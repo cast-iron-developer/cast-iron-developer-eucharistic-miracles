@@ -3,7 +3,6 @@
 
 	let { urlParams } = $props();
 
-	console.log(urlParams);
 </script>
 
 <footer class="footer bg-primary text-base-content p-10 text-white">

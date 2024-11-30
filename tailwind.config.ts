@@ -73,10 +73,17 @@ export default {
 				light: '0 0 .75rem rgba(255, 255, 255, .7)',
 				dark: '0 0 .75rem rgba(0, 0, 0, .7)'
 			},
-			textShadowWhite: {
-				sm: '0 1px 2px #eee',
-				DEFAULT: '1px 2px #eee',
-				lg: '0 8px 16px #eee'
+			boxShadow: {
+				lightShadowSm: '0 1px 2px 0 rgb(255 255 255 / 0.05)',
+				lightShadow: '0 1px 3px 0 rgb(255 255 255 / 0.1), 0 1px 2px -1px rgb(255 255 255 / 0.1)',
+				lightShadowMd:
+					'0 4px 6px -1px rgb(255 255 255 / 0.1), 0 2px 4px -2px rgb(255 255 255 / 0.1)',
+				lightShadowLg:
+					'0 10px 15px -3px rgb(255 255 255 / 0.1), 0 4px 6px -4px rgb(255 255 255 / 0.1)',
+				lightShadowXl:
+					'0 20px 25px -5px rgb(255 255 255 / 0.1), 0 8px 10px -6px rgb(255 255 255 / 0.1)',
+				lightShadow2xl: '0 25px 50px -12px rgb(255 255 255 / 0.25)',
+				lightShadowInner: 'inset 0 2px 4px 0 rgb(255 255 255 / 0.05)'
 			},
 			colors: {
 				primary: {

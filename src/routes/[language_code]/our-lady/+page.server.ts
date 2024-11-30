@@ -1,14 +1,20 @@
 import { supabase } from '$lib/server/supabaseClient';
 
 import type { PageServerLoad } from './$types';
+import type { OurLadyWithCountry } from '$lib/utils/Types/OurLadyWithCountry';
+import { genericApiCall } from '$lib/utils/apiUtils';
+import type { Tables } from '$lib/server/database.types';
 
 export const load: PageServerLoad = async ({ params }) => {
-	const { data: ourLadyData, error: ourLadyError } = await supabase
-		.from('our_lady')
-		.select('*')
-		.eq('language_code', params.language_code)
-		.eq('deleted', false)
-		.eq('draft', false);
+	const [ourLadyData, ourLadyError] = await genericApiCall(
+		supabase
+			.from('our_lady')
+			.select(`*, country (name)`)
+			.eq('language_code', params.language_code)
+			.eq('deleted', false)
+			.eq('draft', false)
+			.returns<OurLadyWithCountry>()
+	);
 
 	if (ourLadyError) {
 		console.error(`Error fetching data from Our Lady's table: ${ourLadyError}`);
@@ -21,8 +27,8 @@ export const load: PageServerLoad = async ({ params }) => {
 	}
 
 	const countryKeys: string[] = ourLadyData
-		.filter((key) => key !== null && key !== undefined)
-		.map((data) => data.country_id);
+		.filter((key: string) => key !== null && key !== undefined)
+		.map((data: Tables<'our_lady'>) => data.country_id);
 
 	if (countryKeys.length === 0) {
 		console.warn("Could not get Country ID from Our Lady's Data.");

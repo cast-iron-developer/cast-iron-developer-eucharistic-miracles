@@ -1,14 +1,20 @@
 import { supabase } from '$lib/server/supabaseClient';
 
+import type { MiracleWithCountry } from '$lib/utils/Types/MiracleWithCountry';
 import type { PageServerLoad } from './$types';
+import { genericApiCall } from '$lib/utils/apiUtils';
+import type { Tables } from '$lib/server/database.types';
 
 export const load: PageServerLoad = async ({ params }) => {
-	const { data: miracleData, error: miracleError } = await supabase
-		.from('miracles')
-		.select('*')
-		.eq('language_code', params.language_code)
-		.eq('deleted', false)
-		.eq('draft', false);
+	const [miracleData, miracleError] = await genericApiCall(
+		supabase
+			.from('miracles')
+			.select(`*, countries (name)`)
+			.eq('language_code', params.language_code)
+			.eq('deleted', false)
+			.eq('draft', false)
+			.returns<MiracleWithCountry>()
+	);
 
 	if (miracleError) {
 		console.error('Error fetching Miracle data.', miracleError);
@@ -21,8 +27,8 @@ export const load: PageServerLoad = async ({ params }) => {
 	}
 
 	const countryKeys: string[] = miracleData
-		.filter((key) => key !== null && key !== undefined)
-		.map((data) => data.country_id);
+		.filter((key: string) => key !== null && key !== undefined)
+		.map((data: Tables<'miracles'>) => data.country_id);
 
 	if (countryKeys.length === 0) {
 		console.warn('Could not get Country ID from Miracle Data.');

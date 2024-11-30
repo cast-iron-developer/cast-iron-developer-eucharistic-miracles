@@ -1,17 +1,23 @@
 import { supabase } from '$lib/server/supabaseClient';
 
 import type { PageServerLoad } from './$types';
+import { genericApiCall } from '$lib/utils/apiUtils';
+import type { SaintWithCountry } from '$lib/utils/Types/SaintWithCountry';
+import type { Tables } from '$lib/server/database.types';
 
 export const load: PageServerLoad = async ({ params }) => {
-	const { data: saintData, error } = await supabase
-		.from('saints')
-		.select('*')
-		.eq('language_code', params.language_code)
-		.eq('miraculous_communion', false)
-		.eq('deleted', false)
-		.eq('draft', false);
+	const [saintData, saintError] = await genericApiCall(
+		supabase
+			.from('saints')
+			.select(`*, countries (name)`)
+			.eq('language_code', params.language_code)
+			.eq('miraculous_communion', false)
+			.eq('deleted', false)
+			.eq('draft', false)
+			.returns<SaintWithCountry>()
+	);
 
-	if (error) {
+	if (saintError) {
 		console.error(`Error fetching data from Saints table: ${saintData}`);
 		return { saintData: [], countryData: [] };
 	}
@@ -22,8 +28,8 @@ export const load: PageServerLoad = async ({ params }) => {
 	}
 
 	const countryKeys: string[] = saintData
-		.map((data) => data.country_id)
-		.filter((key) => key !== null && key !== undefined);
+		.filter((key: string) => key !== null && key !== undefined)
+		.map((data: Tables<'saints'>) => data.country_id);
 
 	if (countryKeys.length === 0) {
 		console.warn('Could not get Country ID from Saint Data.');

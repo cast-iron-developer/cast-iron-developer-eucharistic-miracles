@@ -23,8 +23,6 @@
 		if (!validLanguageCode(params.language_code)) {
 			return null;
 		}
-		console.log('here');
-		console.log('code: ', params.language_code);
 		return params.language_code;
 	};
 </script>

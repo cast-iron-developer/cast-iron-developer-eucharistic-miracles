@@ -1,3 +1,6 @@
+export const LIST_DATA_SELECT_QUERY: string = `id, name, blurb, type, slug, language_code, countries (name, id)`;
+export const COUNTRY_DATA_SELECT_QUERY: string = 'id, name, type';
+
 export async function genericApiCall(apiCall: any) {
 	try {
 		const data = await apiCall;
@@ -11,5 +14,3 @@ export async function genericApiCall(apiCall: any) {
 		return [null, error];
 	}
 }
-
-export const genericError = (errorArray: any[]) => {};

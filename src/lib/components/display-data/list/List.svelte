@@ -1,14 +1,12 @@
 <script lang="ts">
-	import type { MiracleWithCountry } from '$lib/utils/Types/MiracleWithCountry';
-	import type { OurLadyWithCountry } from '$lib/utils/Types/OurLadyWithCountry';
-	import type { SaintWithCountry } from '$lib/utils/Types/SaintWithCountry';
+
+	import type { ListData } from '$lib/utils/Types/DatabaseTypes';
 
 	interface ListProps {
-		list: MiracleWithCountry[] | OurLadyWithCountry[] | SaintWithCountry[];
+		list: ListData[];
 	}
 
 	let { list }: ListProps = $props();
-
 	const truncateString = (str: string, maxLength: number) => {
 		if (str.length >= maxLength) {
 			return str.substring(0, maxLength - 3) + '...';
@@ -27,7 +25,7 @@
 	{#each list as item }
 		<div
 			class="from-md:max-w-sm to-md:max-w-64 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 lightShadow2xl">
-			<a href="/">
+			<a href={`/${item.language_code}/${item.type}/${item.slug}`}>
 				<img class="rounded-t-lg" src="https://stjohncc.org/images/eucharistchalice.png"
 						 alt="found at https://stjohncc.org/sacrament-eucharist" />
 				<div class="p-5">

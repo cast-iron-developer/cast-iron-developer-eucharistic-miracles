@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
 	import img from '$lib/images/carlo-hero.jpg'
 
 	let { data } = $props();
-
+	console.log('data: ', data);
 </script>
 <svelte:head>
 	<title>Eucharistic Miracles of the World!</title>

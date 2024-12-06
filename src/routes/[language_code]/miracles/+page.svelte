@@ -1,31 +1,9 @@
 <script lang="ts">
 	import img from '$lib/images/Lanciano.jpg';
-	import Filter from '$lib/components/filter/Filter.svelte';
-	import List from '$lib/components/list/List.svelte';
+	import DataDisplay from '$lib/components/display-data/data-display.svelte';
 	import Citations from '$lib/components/citations/citations.svelte';
-	import type { Database } from '$lib/server/database.types';
-
-	type Miracle = Database['public']['Tables']['miracles']['Row'];
-	type Country = Database['public']['Tables']['countries']['Row'];
-	type ActiveFilters = { countryIds?: string[] };
 
 	let { data } = $props();
-	let activeFilters: ActiveFilters = $state({});
-	let countryInput: string = $state('');
-	let visibleCountries: Country[] = $state(data.countryData);
-	let visibleMiracles: Miracle[] = $derived.by(() => {
-		if (activeFilters.countryIds && activeFilters.countryIds.length > 0) {
-			return data.miracleData.filter(item => {
-				return activeFilters?.countryIds?.includes(item.country_id);
-			});
-		}
-
-		return data.miracleData;
-	});
-
-	const updatedFilters = (updatedFilters: ActiveFilters) => {
-		activeFilters = { ...activeFilters, ...updatedFilters };
-	};
 
 </script>
 
@@ -59,8 +37,10 @@
 
 <section
 	class="section-list-content bg-primary py-20 from-md:grid from-sm:grid-cols-[15px_2fr_10fr_15px] from-sm:grid-rows-[max-content] from-sm:gap-6">
-	<Filter filters={visibleCountries} input={countryInput} onUpdateFilters={updatedFilters} />
-	<List list={visibleMiracles} />
+	{#if !data.miracleData && !data.countryData}
+		<h3 class="text-2xl white">No Results found!</h3>
+	{/if}
+	<DataDisplay itemType={'Miracles'} listData={data.miracleData} countryData={data.countryData} />
 </section>
 
 <Citations />

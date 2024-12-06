@@ -2,7 +2,6 @@
 	import Icon from '$lib/components/Icon.svelte';
 
 	let { urlParams } = $props();
-
 </script>
 
 <div class="sticky top-0 z-50  bg-primary">

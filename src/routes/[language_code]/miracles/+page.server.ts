@@ -1,19 +1,21 @@
 import { supabase } from '$lib/server/supabaseClient';
-
-import type { MiracleWithCountry } from '$lib/utils/Types/MiracleWithCountry';
 import type { PageServerLoad } from './$types';
-import { genericApiCall } from '$lib/utils/apiUtils';
-import type { Tables } from '$lib/server/database.types';
+import {
+	COUNTRY_DATA_SELECT_QUERY,
+	genericApiCall,
+	LIST_DATA_SELECT_QUERY
+} from '$lib/utils/apiUtils';
+import type { FilterData, ListData } from '$lib/utils/Types/DatabaseTypes';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const [miracleData, miracleError] = await genericApiCall(
 		supabase
 			.from('miracles')
-			.select(`*, countries (name)`)
+			.select(LIST_DATA_SELECT_QUERY)
 			.eq('language_code', params.language_code)
 			.eq('deleted', false)
 			.eq('draft', false)
-			.returns<MiracleWithCountry>()
+			.returns<ListData>()
 	);
 
 	if (miracleError) {
@@ -28,17 +30,20 @@ export const load: PageServerLoad = async ({ params }) => {
 
 	const countryKeys: string[] = miracleData
 		.filter((key: string) => key !== null && key !== undefined)
-		.map((data: Tables<'miracles'>) => data.country_id);
+		.map((data: ListData) => data.countries.id);
 
 	if (countryKeys.length === 0) {
 		console.warn('Could not get Country ID from Miracle Data.');
 		return { miracleData, countryData: [] };
 	}
 
-	const { data: countryData, error: countryError } = await supabase
-		.from('countries')
-		.select('*')
-		.in('id', countryKeys);
+	const [countryData, countryError] = await genericApiCall(
+		supabase
+			.from('countries')
+			.select(COUNTRY_DATA_SELECT_QUERY)
+			.in('id', countryKeys)
+			.returns<FilterData>()
+	);
 
 	if (countryError) {
 		console.error('Error fetching Country data.', countryError);

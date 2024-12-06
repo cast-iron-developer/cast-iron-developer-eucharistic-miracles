@@ -1,32 +1,10 @@
 <script lang="ts">
 import img from '$lib/images/carlo-hero.jpg';
 import Citations from '$lib/components/citations/citations.svelte';
-import List from '$lib/components/list/List.svelte';
-import Filter from '$lib/components/filter/Filter.svelte';
-
-import type { Database } from '$lib/server/database.types.js';
-
-type Saint = Database['public']['Tables']['saints']['Row'];
-type Country = Database['public']['Tables']['countries']['Row'];
-type ActiveFilters = { countryIds?: string[] };
+import DataDisplay from '$lib/components/display-data/data-display.svelte';
 
 let { data } = $props();
-let activeFilters: ActiveFilters = $state({});
-let countryInput: string = $state('');
-let visibleCountries: Country[] = $state(data.countryData);
-let visibleSaints: Saint[] = $derived.by(() => {
-	if (activeFilters.countryIds && activeFilters.countryIds.length > 0) {
-		return data.saintData.filter(item => {
-			return activeFilters?.countryIds?.includes(item.country_id);
-		});
-	}
 
-	return data.saintData;
-});
-
-const updatedFilters = (updatedFilters: ActiveFilters) => {
-	activeFilters = { ...activeFilters, ...updatedFilters };
-};
 </script>
 
 <section>
@@ -42,19 +20,11 @@ const updatedFilters = (updatedFilters: ActiveFilters) => {
 	</div>
 </section>
 
-<section class="section-communion bg-primary py-20 ">
-	<Filter filters={visibleCountries} input={countryInput} onUpdateFilters={updatedFilters} />
-	<List list={visibleSaints} />
+<section class="section-list-content bg-primary py-20 from-md:grid from-sm:grid-cols-[15px_2fr_10fr_15px] from-sm:grid-rows-[max-content] from-sm:gap-6">
+	{#if !data.saintData && !data.countryData}
+		<h3 class="text-2xl white">No Results found!</h3>
+	{/if}
+	<DataDisplay itemType={'Recipients'} listData={data.saintData} countryData={data.countryData} />
 </section>
 
 <Citations />
-
-<style lang="scss">
-
-  .section-communion {
-    display: grid;
-    grid-template-columns: 15px 2fr 10fr 15px;
-    grid-template-rows: max-content;
-    gap: 1.5rem;
-  }
-</style>

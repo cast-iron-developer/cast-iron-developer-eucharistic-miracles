@@ -7,7 +7,7 @@
 	import { validLanguageCode } from '$lib/utils/LanguageEnum';
 	import { afterNavigate } from '$app/navigation';
 
-	let { children } = $props();
+	let { children, data } = $props();
 
 	let pager = $state($page);
 

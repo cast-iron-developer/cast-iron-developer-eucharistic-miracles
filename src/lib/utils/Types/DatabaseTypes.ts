@@ -32,8 +32,13 @@ export type FilterData = {
 	type: string;
 };
 
-export type Language = {
-	code?: string;
+export type LanguageData = LanguageCodes & {
+	id: string;
+	name: string;
+};
+
+export type LanguageCodes = {
+	code: string;
 };
 
 export type Country = {

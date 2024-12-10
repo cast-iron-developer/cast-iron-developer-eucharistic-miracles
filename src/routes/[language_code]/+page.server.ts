@@ -1,7 +1,7 @@
 import { supabase } from '$lib/server/supabaseClient';
-import type { PageServerLoad } from './$types';
 import { genericApiCall } from '$lib/utils/apiUtils';
 import type { Database } from '$lib/server/database.types';
+import type { PageServerLoad } from './$types';
 
 type Saint = Database['public']['Tables']['saints']['Row'];
 

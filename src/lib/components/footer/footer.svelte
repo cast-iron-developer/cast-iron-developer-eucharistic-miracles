@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Icon from '$lib/components/Icon.svelte';
 
-	let { urlParams } = $props();
+	let { urlParams: urlParam }: { urlParams: string } = $props();
 
 </script>
 
@@ -16,13 +16,13 @@
 			Saving souls since circa 33 AD
 		</p>
 	</aside>
-	{#if urlParams}
+	{#if urlParam && urlParam !== ""}
 		<nav>
 			<h6 class="footer-title">Internal Links</h6>
-			<a href="/miracles">Miracles</a>
-			<a href="/our-lady">Our Lady</a>
-			<a href="/saints">Saints</a>
-			<a href="/communion">Communion</a>
+			<a href={`/${urlParam}/miracles`}>Miracles</a>
+			<a href={`/${urlParam}/our-lady`}>Our Lady</a>
+			<a href={`/${urlParam}/saints`}>Saints</a>
+			<a href={`/${urlParam}/communion`}>Communion</a>
 		</nav>
 	{/if}
 	<nav>

@@ -45,3 +45,11 @@ export type Country = {
 	id: string;
 	name?: string;
 };
+
+export type CarouselItem = {
+	id: string;
+	imageUrl: string;
+	altText: string;
+	description?: string;
+	position: number;
+};

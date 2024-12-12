@@ -1,6 +1,6 @@
 import { supabase } from '$lib/server/supabaseClient';
 import { genericApiCall } from '$lib/utils/apiUtils';
-import type { LanguageCodes, LanguageData } from '$lib/utils/Types/DatabaseTypes';
+import type { LanguageCodes, LanguageData } from '$lib/utils/types/DatabaseTypes';
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ params }) => {

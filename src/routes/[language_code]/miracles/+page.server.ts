@@ -1,11 +1,11 @@
 import { supabase } from '$lib/server/supabaseClient';
-import type { PageServerLoad } from '../../../../../.svelte-kit/types/src/routes';
+import type { PageServerLoad } from './$types';
 import {
 	COUNTRY_DATA_SELECT_QUERY,
 	genericApiCall,
 	LIST_DATA_SELECT_QUERY
 } from '$lib/utils/apiUtils';
-import type { FilterData, ListData } from '$lib/utils/Types/DatabaseTypes';
+import type { FilterData, ListData } from '$lib/utils/types/DatabaseTypes';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const [miracleData, miracleError] = await genericApiCall(
@@ -15,7 +15,6 @@ export const load: PageServerLoad = async ({ params }) => {
 			.eq('language_code', params.language_code)
 			.eq('deleted', false)
 			.eq('draft', false)
-			.returns<ListData>()
 	);
 
 	if (miracleError) {

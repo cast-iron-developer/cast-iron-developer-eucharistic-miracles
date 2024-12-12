@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { FilterData, ListData } from '$lib/utils/Types/DatabaseTypes';
+	import type { FilterData, ListData } from '$lib/utils/types/DatabaseTypes';
 	import type { Filters } from '$lib/components/display-data/types/types';
 
 	interface FilterProps {

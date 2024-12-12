@@ -12,7 +12,8 @@ export const carouselItems: CarouselItem[] = [
 		id: '1',
 		imageUrl: 'https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp',
 		altText: 'alt text',
-		description: '',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At atque blanditiis consectetur consequuntur culpa dolores eaque earum hic iusto labore molestiae mollitia non obcaecati, odit, repudiandae rerum tempore tenetur voluptates.',
 		position: 2
 	},
 	{
@@ -26,7 +27,8 @@ export const carouselItems: CarouselItem[] = [
 		id: '3',
 		imageUrl: 'https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp',
 		altText: 'alt text',
-		description: '',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At atque blanditiis consectetur consequuntur culpa dolores eaque earum hic iusto labore molestiae mollitia non obcaecati, odit, repudiandae rerum tempore tenetur voluptates.',
 		position: 4
 	},
 	{
@@ -40,14 +42,16 @@ export const carouselItems: CarouselItem[] = [
 		id: '5',
 		imageUrl: 'https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp',
 		altText: 'alt text',
-		description: '',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At atque blanditiis consectetur consequuntur culpa dolores eaque earum hic iusto labore molestiae mollitia non obcaecati, odit, repudiandae rerum tempore tenetur voluptates.',
 		position: 6
 	},
 	{
 		id: '6',
 		imageUrl: 'https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp',
 		altText: 'alt text',
-		description: '',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At atque blanditiis consectetur consequuntur culpa dolores eaque earum hic iusto labore molestiae mollitia non obcaecati, odit, repudiandae rerum tempore tenetur voluptates.',
 		position: 7
 	}
 ];

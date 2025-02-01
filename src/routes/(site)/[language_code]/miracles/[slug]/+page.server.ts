@@ -1,4 +1,4 @@
-import type { PageServerLoad } from './$types';
+import type { PageServerLoad } from '../../../../../../.svelte-kit/types/src/routes';
 import { genericApiCall } from '$lib/utils/apiUtils';
 import { supabase } from '$lib/server/supabaseClient';
 import { carouselItems } from '$lib/utils/testData/carousel-items';

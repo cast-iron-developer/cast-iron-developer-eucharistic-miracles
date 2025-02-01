@@ -26,10 +26,10 @@
 					<ul
 						tabindex="-1"
 						class="menu menu-sm dropdown-content bg-primary-600 rounded-box z-[1] mt-3 w-52 p-2 shadow text-white">
-						<li><a href={`/${urlParam}/miracles`}>Miracles</a></li>
-						<li><a href={`/${urlParam}/our-lady`}>Our Lady</a></li>
-						<li><a href={`/${urlParam}/saints`}>Saints</a></li>
-						<li><a href={`/${urlParam}/communion`}>Communion</a></li>
+						<li><a class="active:!bg-primary-600" href={`/${urlParam}/miracles`}>Miracles</a></li>
+						<li><a class="active:!bg-primary-600" href={`/${urlParam}/our-lady`}>Our Lady</a></li>
+						<li><a class="active:!bg-primary-600" href={`/${urlParam}/saints`}>Saints</a></li>
+						<li><a class="active:!bg-primary-600" href={`/${urlParam}/communion`}>Communion</a></li>
 					</ul>
 				</div>
 			{/if}
@@ -41,10 +41,10 @@
 		{#if urlParam && urlParam !== ""}
 			<div class="navbar-end hidden lg:flex">
 				<ul class="menu menu-horizontal px-1 text-white">
-					<li><a class="hover:bg-primary-700" href={`/${urlParam}/miracles`}>Miracles</a></li>
-					<li><a class="hover:bg-primary-700" href={`/${urlParam}/our-lady`}>Our Lady</a></li>
-					<li><a class="hover:bg-primary-700" href={`/${urlParam}/saints`}>Saints</a></li>
-					<li><a class="hover:bg-primary-700" href={`/${urlParam}/communion`}>Communion</a></li>
+					<li><a class="hover:bg-primary-700 active:!bg-primary-600" href={`/${urlParam}/miracles`}>Miracles</a></li>
+					<li><a class="hover:bg-primary-700 active:!bg-primary-600" href={`/${urlParam}/our-lady`}>Our Lady</a></li>
+					<li><a class="hover:bg-primary-700 active:!bg-primary-600" href={`/${urlParam}/saints`}>Saints</a></li>
+					<li><a class="hover:bg-primary-700 active:!bg-primary-600" href={`/${urlParam}/communion`}>Communion</a></li>
 				</ul>
 			</div>
 		{/if}

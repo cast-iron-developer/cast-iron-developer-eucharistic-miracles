@@ -1,8 +1,11 @@
 <script lang="ts">
 	import img from '$lib/images/carlo-hero.jpg'
+	import { beforeNavigate, goto } from '$app/navigation';
 
 	let { data } = $props();
 
+	beforeNavigate((navigation) => {
+	})
 </script>
 <svelte:head>
 	<title>Eucharistic Miracles of the World!</title>

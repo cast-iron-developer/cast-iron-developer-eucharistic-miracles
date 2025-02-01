@@ -1,7 +1,7 @@
 import { supabase } from '$lib/server/supabaseClient';
-import type { PageServerLoad } from './$types';
 import { genericApiCall } from '$lib/utils/apiUtils';
 import type { LanguageCodes, LanguageData } from '$lib/utils/types/DatabaseTypes';
+import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
 	const [languageData, languageError] = await genericApiCall(

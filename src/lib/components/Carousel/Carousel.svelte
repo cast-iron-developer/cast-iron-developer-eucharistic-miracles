@@ -68,11 +68,13 @@
 			<p><span>{activeItem}</span> of <span>{items.length}</span></p>
 		</div>
 		<div class="flex w-full justify-center gap-2 py-2">
+			<a href="#slide1" class="btn btn-circle">❮</a>
 			{#each items as item}
 				<a class="btn btn-xs" class:activeBtn={item.position === activeItem} href={getSlide(item.position)}
 					 onclick={changeActiveItem}
 					 data-item-index={item.position}>{item.position}</a>
 			{/each}
+			<a href="#slide3" class="btn btn-circle">❯</a>
 		</div>
 	</div>
 </article>

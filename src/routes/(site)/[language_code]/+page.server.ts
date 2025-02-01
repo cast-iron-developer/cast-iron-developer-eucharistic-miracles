@@ -2,15 +2,30 @@ import { supabase } from '$lib/server/supabaseClient';
 import { genericApiCall } from '$lib/utils/apiUtils';
 import type { Database } from '$lib/server/database.types';
 import type { PageServerLoad } from './$types';
+import { error } from '@sveltejs/kit';
 
 type Saint = Database['public']['Tables']['saints']['Row'];
 
 export const load: PageServerLoad = async ({ params }) => {
 	if (params.language_code === null || params.language_code === undefined) {
 		console.error('Could not get data.');
-		return {};
+		error(400, {
+			message: 'Bad Request'
+		});
 	}
 
+	const [languageData, languageError] = await genericApiCall(
+		supabase.from('languages').select('*').eq('language_code', params.language_code)
+	);
+
+	if (languageError) {
+		console.log(languageError);
+		error(languageError.status, {
+			message: languageError.statusText
+		});
+	}
+
+	console.log('do we get here? we ought not');
 	const [miracleData, miracleError] = await genericApiCall(
 		supabase
 			.from('miracles')

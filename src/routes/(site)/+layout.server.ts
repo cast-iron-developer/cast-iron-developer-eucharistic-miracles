@@ -1,7 +1,7 @@
 import { supabase } from '$lib/server/supabaseClient';
 import { genericApiCall } from '$lib/utils/apiUtils';
 import type { LanguageCodes, LanguageData } from '$lib/utils/types/DatabaseTypes';
-import type { LayoutServerLoad } from './$types';
+import type { LayoutServerLoad } from '../../../.svelte-kit/types/src/routes';
 
 export const load: LayoutServerLoad = async ({ params }) => {
 	const [languageData, languageError] = await genericApiCall(

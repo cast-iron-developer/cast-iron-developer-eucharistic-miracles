@@ -18,6 +18,7 @@ export type Database = {
           id: string
           modified_at: string | null
           name: string
+          type: Database["public"]["Enums"]["type"]
         }
         Insert: {
           active?: boolean | null
@@ -27,6 +28,7 @@ export type Database = {
           id?: string
           modified_at?: string | null
           name: string
+          type?: Database["public"]["Enums"]["type"]
         }
         Update: {
           active?: boolean | null
@@ -36,6 +38,7 @@ export type Database = {
           id?: string
           modified_at?: string | null
           name?: string
+          type?: Database["public"]["Enums"]["type"]
         }
         Relationships: []
       }
@@ -44,6 +47,7 @@ export type Database = {
           code: string
           created_at: string
           id: string
+          language: Database["public"]["Enums"]["type"]
           modified_at: string | null
           name: string
         }
@@ -51,6 +55,7 @@ export type Database = {
           code: string
           created_at?: string
           id?: string
+          language?: Database["public"]["Enums"]["type"]
           modified_at?: string | null
           name: string
         }
@@ -58,6 +63,7 @@ export type Database = {
           code?: string
           created_at?: string
           id?: string
+          language?: Database["public"]["Enums"]["type"]
           modified_at?: string | null
           name?: string
         }
@@ -79,6 +85,7 @@ export type Database = {
           quotes: string[] | null
           slug: string | null
           story: Json | null
+          type: Database["public"]["Enums"]["type"]
         }
         Insert: {
           base_translation?: boolean | null
@@ -95,6 +102,7 @@ export type Database = {
           quotes?: string[] | null
           slug?: string | null
           story?: Json | null
+          type?: Database["public"]["Enums"]["type"]
         }
         Update: {
           base_translation?: boolean | null
@@ -111,6 +119,7 @@ export type Database = {
           quotes?: string[] | null
           slug?: string | null
           story?: Json | null
+          type?: Database["public"]["Enums"]["type"]
         }
         Relationships: [
           {
@@ -146,6 +155,7 @@ export type Database = {
           quotes: string[] | null
           slug: string | null
           story: Json | null
+          type: Database["public"]["Enums"]["type"]
         }
         Insert: {
           base_translation?: boolean | null
@@ -163,6 +173,7 @@ export type Database = {
           quotes?: string[] | null
           slug?: string | null
           story?: Json | null
+          type?: Database["public"]["Enums"]["type"]
         }
         Update: {
           base_translation?: boolean | null
@@ -180,6 +191,7 @@ export type Database = {
           quotes?: string[] | null
           slug?: string | null
           story?: Json | null
+          type?: Database["public"]["Enums"]["type"]
         }
         Relationships: [
           {
@@ -217,6 +229,7 @@ export type Database = {
           quotes: string[] | null
           slug: string | null
           story: Json | null
+          type: Database["public"]["Enums"]["type"]
         }
         Insert: {
           base_translation?: boolean | null
@@ -236,6 +249,7 @@ export type Database = {
           quotes?: string[] | null
           slug?: string | null
           story?: Json | null
+          type?: Database["public"]["Enums"]["type"]
         }
         Update: {
           base_translation?: boolean | null
@@ -255,6 +269,7 @@ export type Database = {
           quotes?: string[] | null
           slug?: string | null
           story?: Json | null
+          type?: Database["public"]["Enums"]["type"]
         }
         Relationships: [
           {
@@ -310,7 +325,7 @@ export type Database = {
       }
     }
     Enums: {
-      [_ in never]: never
+      type: "saint" | "miracle" | "our_lady" | "country" | "language"
     }
     CompositeTypes: {
       [_ in never]: never

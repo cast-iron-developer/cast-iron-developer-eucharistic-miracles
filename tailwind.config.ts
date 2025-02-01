@@ -9,6 +9,16 @@ export default {
 
 	plugins: [require('daisyui'), typography, containerQueries, aspectRatio],
 	theme: {
+		container: {
+			center: true,
+			padding: {
+				DEFAULT: '1rem',
+				sm: '2rem',
+				lg: '4rem',
+				xl: '5rem',
+				'2xl': '6rem'
+			}
+		},
 		fontFamily: {
 			montserrat: ['Montserrat', 'sans-serif']
 		},
@@ -28,45 +38,52 @@ export default {
 				// => @media (min-width: 1280px and max-width: 1535px) { ... }
 
 				// additional media queries because I like flexibility
-				'to-xs': { max: '639px' },
+				'to-sm': { max: '639px' },
 				// => @media (max-width: 639px) { ... }
 
-				'to-sm': { max: '767px' },
+				'to-md': { max: '767px' },
 				// => @media (max-width: 767px) { ... }
 
-				'to-md': { max: '1023px' },
+				'to-lg': { max: '1023px' },
 				// => @media (max-width: 1023px) { ... }
 
-				'to-lg': { max: '1279px' },
+				'to-xl': { max: '1279px' },
 				// => @media (max-width: 1279px) { ... }
 
-				'to-xl': { max: '1535px' },
+				'to-2xl': { max: '1535px' },
 				// => @media (max-width: 1535px) { ... }
 
 				// Starting the inverse of the standard tailwind media queries bc i hate them.
-				'from-xs': { min: '640px' },
+				'from-sm': { min: '640px' },
 				// => @media (max-width: 640px) { ... }
 
-				'from-sm': { min: '768px' },
+				'from-md': { min: '768px' },
 				// => @media (max-width: 768px) { ... }
 
-				'from-md': { min: '1024px' },
+				'from-lg': { min: '1024px' },
 				// => @media (max-width: 1024px) { ... }
 
-				'from-lg': { min: '1280px' },
+				'from-xl': { min: '1280px' },
 				// => @media (max-width: 1280px) { ... }
 
-				'from-xl': { min: '1536px' }
+				'from-2xl': { min: '1536px' }
 				// => @media (max-width: 1536px) { ... }
 			},
 			dropShadow: {
 				light: '0 0 .75rem rgba(255, 255, 255, .7)',
 				dark: '0 0 .75rem rgba(0, 0, 0, .7)'
 			},
-			textShadowWhite: {
-				sm: '0 1px 2px #eee',
-				DEFAULT: '1px 2px #eee',
-				lg: '0 8px 16px #eee'
+			boxShadow: {
+				lightShadowSm: '0 1px 2px 0 rgb(255 255 255 / 0.05)',
+				lightShadow: '0 1px 3px 0 rgb(255 255 255 / 0.1), 0 1px 2px -1px rgb(255 255 255 / 0.1)',
+				lightShadowMd:
+					'0 4px 6px -1px rgb(255 255 255 / 0.1), 0 2px 4px -2px rgb(255 255 255 / 0.1)',
+				lightShadowLg:
+					'0 10px 15px -3px rgb(255 255 255 / 0.1), 0 4px 6px -4px rgb(255 255 255 / 0.1)',
+				lightShadowXl:
+					'0 20px 25px -5px rgb(255 255 255 / 0.1), 0 8px 10px -6px rgb(255 255 255 / 0.1)',
+				lightShadow2xl: '0 25px 50px -12px rgb(255 255 255 / 0.25)',
+				lightShadowInner: 'inset 0 2px 4px 0 rgb(255 255 255 / 0.05)'
 			},
 			colors: {
 				primary: {

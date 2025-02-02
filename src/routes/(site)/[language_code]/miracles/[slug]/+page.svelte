@@ -1,7 +1,7 @@
 <script lang="ts">
 
 	import type { Tables } from '$lib/server/database.types';
-	import Carousel from '$lib/components/Carousel/Carousel.svelte';
+	import Carousel from '$lib/components/carousel/Carousel.svelte';
 
 	let { data } = $props();
 

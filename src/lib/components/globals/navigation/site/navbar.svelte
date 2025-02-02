@@ -1,8 +1,12 @@
 <script lang="ts">
 	import Icon from '$lib/components/Icon.svelte';
+	import NavigationList from '$lib/components/globals/nav-list.svelte';
+	import { siteNavigation } from '$lib/components/globals/site-navigation';
+	import type { NavigationListType } from '$lib/utils/types/general-types';
 
 	let { urlParams: urlParam }: { urlParams: string } = $props();
 
+	const navigation: NavigationListType = $state(siteNavigation);
 </script>
 
 <div class="sticky top-0 z-50  bg-primary">
@@ -23,14 +27,11 @@
 								d="M4 6h16M4 12h8m-8 6h16" />
 						</svg>
 					</div>
-					<ul
-						tabindex="-1"
-						class="menu menu-sm dropdown-content bg-primary-600 rounded-box z-[1] mt-3 w-52 p-2 shadow text-white">
-						<li><a class="active:!bg-primary-600" href={`/${urlParam}/miracles`}>Miracles</a></li>
-						<li><a class="active:!bg-primary-600" href={`/${urlParam}/our-lady`}>Our Lady</a></li>
-						<li><a class="active:!bg-primary-600" href={`/${urlParam}/saints`}>Saints</a></li>
-						<li><a class="active:!bg-primary-600" href={`/${urlParam}/communions`}>Communion</a></li>
-					</ul>
+					<NavigationList
+						listStyles={"menu menu-sm dropdown-content bg-primary-600 rounded-box z-[1] mt-3 w-52 p-2 shadow text-white"}
+						listItemStyles={"active:!bg-primary-600"}
+						listData={navigation}
+						urlParam={urlParam} />
 				</div>
 			{/if}
 			<a href="/" class="inline-flex items-center logo bg-primary hover:bg-none text-xl text-white p-1.5">
@@ -40,12 +41,11 @@
 		</div>
 		{#if urlParam && urlParam !== ""}
 			<div class="navbar-end hidden lg:flex">
-				<ul class="menu menu-horizontal px-1 text-white">
-					<li><a class="hover:bg-primary-700 active:!bg-primary-600" href={`/${urlParam}/miracles`}>Miracles</a></li>
-					<li><a class="hover:bg-primary-700 active:!bg-primary-600" href={`/${urlParam}/our-lady`}>Our Lady</a></li>
-					<li><a class="hover:bg-primary-700 active:!bg-primary-600" href={`/${urlParam}/saints`}>Saints</a></li>
-					<li><a class="hover:bg-primary-700 active:!bg-primary-600" href={`/${urlParam}/communions`}>Communion</a></li>
-				</ul>
+				<NavigationList
+					listStyles={"menu menu-horizontal px-1 text-white"}
+					listItemStyles={"hover:bg-primary-700 active:!bg-primary-600"}
+					listData={navigation}
+					urlParam={urlParam} />
 			</div>
 		{/if}
 	</div>

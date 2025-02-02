@@ -64,3 +64,13 @@ export type ServerErrorType = {
 
 // API Response Data
 export type ApiDatabaseResponseType<T> = T[];
+
+// Navigation Types
+export type NavigationItemType = {
+	title: string;
+	href: string;
+};
+
+export type NavigationListType = {
+	navigationListItems: NavigationItemType[];
+};

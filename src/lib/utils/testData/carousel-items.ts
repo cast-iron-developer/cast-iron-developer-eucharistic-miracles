@@ -1,4 +1,4 @@
-import type { CarouselItem } from '$lib/utils/types/DatabaseTypes';
+import type { CarouselItem } from '$lib/utils/types/general-types';
 
 export const carouselItems: CarouselItem[] = [
 	{

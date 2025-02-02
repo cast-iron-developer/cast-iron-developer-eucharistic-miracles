@@ -2,7 +2,7 @@ import type { PageServerLoad } from '../../../../../../.svelte-kit/types/src/rou
 import { genericApiCall } from '$lib/utils/apiUtils';
 import { supabase } from '$lib/server/supabaseClient';
 import { carouselItems } from '$lib/utils/testData/carousel-items';
-import type { CarouselItem } from '$lib/utils/types/DatabaseTypes';
+import type { CarouselItem } from '$lib/utils/types/general-types';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const [miracleData, miracleError] = await genericApiCall(

@@ -19,7 +19,7 @@
 	{#if urlParam && urlParam !== ""}
 		<nav>
 			<h6 class="footer-title">Internal Links</h6>
-			<a href={`/${urlParam}/miracles`}>Miracles</a>
+			<a href={`/${urlParam}/miracle`}>Miracles</a>
 			<a href={`/${urlParam}/our-lady`}>Our Lady</a>
 			<a href={`/${urlParam}/saints`}>Saints</a>
 			<a href={`/${urlParam}/communion`}>Communion</a>

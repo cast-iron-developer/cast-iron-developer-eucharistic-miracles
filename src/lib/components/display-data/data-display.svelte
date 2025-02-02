@@ -3,7 +3,7 @@
 	import List from '$lib/components/display-data/list/List.svelte';
 	import FilterList from '$lib/components/display-data/filter/FilterList.svelte';
 	import type { Filters } from '$lib/components/display-data/types/types';
-	import type { FilterData, ListData } from '$lib/utils/types/DatabaseTypes';
+	import type { FilterData, ListData } from '$lib/utils/types/general-types';
 
 	type DataDisplayProps = {
 		itemType: string;

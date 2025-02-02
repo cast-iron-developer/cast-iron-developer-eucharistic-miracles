@@ -69,6 +69,39 @@ export type Database = {
         }
         Relationships: []
       }
+      miracle_images: {
+        Row: {
+          alternate_text: string | null
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string
+          miracle_id: string | null
+          modified_at: string | null
+          position: number
+        }
+        Insert: {
+          alternate_text?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url: string
+          miracle_id?: string | null
+          modified_at?: string | null
+          position: number
+        }
+        Update: {
+          alternate_text?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string
+          miracle_id?: string | null
+          modified_at?: string | null
+          position?: number
+        }
+        Relationships: []
+      }
       miracles: {
         Row: {
           base_translation: boolean | null
@@ -210,6 +243,47 @@ export type Database = {
           },
         ]
       }
+      our_lady_images: {
+        Row: {
+          alternate_text: string | null
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string
+          modified_at: string | null
+          our_lady_id: string | null
+          position: number
+        }
+        Insert: {
+          alternate_text?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url: string
+          modified_at?: string | null
+          our_lady_id?: string | null
+          position: number
+        }
+        Update: {
+          alternate_text?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string
+          modified_at?: string | null
+          our_lady_id?: string | null
+          position?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "our_lady_images_our_lady_id_fkey"
+            columns: ["our_lady_id"]
+            isOneToOne: false
+            referencedRelation: "our_lady"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       saints: {
         Row: {
           base_translation: boolean | null
@@ -288,6 +362,47 @@ export type Database = {
           },
         ]
       }
+      saints_images: {
+        Row: {
+          alternate_text: string | null
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string
+          modified_at: string | null
+          position: number
+          saint_id: string | null
+        }
+        Insert: {
+          alternate_text?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url: string
+          modified_at?: string | null
+          position: number
+          saint_id?: string | null
+        }
+        Update: {
+          alternate_text?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string
+          modified_at?: string | null
+          position?: number
+          saint_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "saints_images_saint_id_fkey"
+            columns: ["saint_id"]
+            isOneToOne: false
+            referencedRelation: "saints"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -325,7 +440,13 @@ export type Database = {
       }
     }
     Enums: {
-      type: "saint" | "miracle" | "our_lady" | "country" | "language"
+      type:
+        | "saint"
+        | "miracle"
+        | "our-lady"
+        | "country"
+        | "language"
+        | "communion"
     }
     CompositeTypes: {
       [_ in never]: never

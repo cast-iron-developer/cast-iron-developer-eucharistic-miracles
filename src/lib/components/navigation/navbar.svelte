@@ -29,7 +29,7 @@
 						<li><a class="active:!bg-primary-600" href={`/${urlParam}/miracles`}>Miracles</a></li>
 						<li><a class="active:!bg-primary-600" href={`/${urlParam}/our-lady`}>Our Lady</a></li>
 						<li><a class="active:!bg-primary-600" href={`/${urlParam}/saints`}>Saints</a></li>
-						<li><a class="active:!bg-primary-600" href={`/${urlParam}/communion`}>Communion</a></li>
+						<li><a class="active:!bg-primary-600" href={`/${urlParam}/communions`}>Communion</a></li>
 					</ul>
 				</div>
 			{/if}
@@ -44,7 +44,7 @@
 					<li><a class="hover:bg-primary-700 active:!bg-primary-600" href={`/${urlParam}/miracles`}>Miracles</a></li>
 					<li><a class="hover:bg-primary-700 active:!bg-primary-600" href={`/${urlParam}/our-lady`}>Our Lady</a></li>
 					<li><a class="hover:bg-primary-700 active:!bg-primary-600" href={`/${urlParam}/saints`}>Saints</a></li>
-					<li><a class="hover:bg-primary-700 active:!bg-primary-600" href={`/${urlParam}/communion`}>Communion</a></li>
+					<li><a class="hover:bg-primary-700 active:!bg-primary-600" href={`/${urlParam}/communions`}>Communion</a></li>
 				</ul>
 			</div>
 		{/if}

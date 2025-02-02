@@ -16,7 +16,6 @@ export const handleFetch: HandleFetch = async ({ request, fetch }) => {
 export const handleError: HandleServerError = async ({ error, event }) => {
 	// this is for unexpected errors; will have to brainstorm how to use it
 	console.log(error);
-	console.log('whathkj;fldajsk;fjadl;s');
 	return {
 		message: 'Yikes! 💩'
 	};

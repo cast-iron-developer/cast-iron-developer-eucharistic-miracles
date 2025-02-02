@@ -1,60 +1,51 @@
 import { supabase } from '$lib/server/supabaseClient';
 
-import type { PageServerLoad } from '../../../../../.svelte-kit/types/src/routes';
+import type { PageServerLoad } from './$types';
 import {
 	COUNTRY_DATA_SELECT_QUERY,
 	genericApiCall,
 	LIST_DATA_SELECT_QUERY
 } from '$lib/utils/apiUtils';
-import type { FilterData, ListData } from '$lib/utils/types/DatabaseTypes';
+import type { FilterData, ListData, ServerErrorType } from '$lib/utils/types/general-types';
+import { error } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async ({ params }) => {
-	const [saintData, saintError] = await genericApiCall(
-		supabase
-			.from('saints')
-			.select(LIST_DATA_SELECT_QUERY)
-			.eq('language_code', params.language_code)
-			.eq('miraculous_communion', false)
-			.eq('deleted', false)
-			.eq('draft', false)
-			.returns<ListData>()
-	);
+	const [saintData, saintError]: [ListData[], ServerErrorType | null] =
+		await genericApiCall<ListData>(
+			supabase
+				.from('saints')
+				.select(LIST_DATA_SELECT_QUERY)
+				.eq('language_code', params.language_code)
+				.eq('miraculous_communion', false)
+				.eq('deleted', false)
+				.eq('draft', false)
+		);
 
 	if (saintError) {
-		console.error(`Error fetching data from Saints table: ${saintData}`);
-		return { saintData: [], countryData: [] };
-	}
-
-	if (!saintData || saintData.length === 0) {
-		console.warn('No data found in Saints table');
-		return { saintData: [], countryData: [] };
+		error(saintError.status, {
+			message: saintError.statusText
+		});
 	}
 
 	const countryKeys: string[] = saintData
-		.filter((key: string) => key !== null && key !== undefined)
-		.map((data: ListData) => data.countries.id);
+		.map((data: ListData) => data.countries?.id)
+		.filter((id): id is string => id !== null && id !== undefined);
 
 	if (countryKeys.length === 0) {
-		console.warn('Could not get Country ID from Saint Data.');
-		return { saintData, countryData: [] };
+		error(404, {
+			message: "Could not get Country ID from Our Lady's Data."
+		});
 	}
 
-	const [countryData, countryError] = await genericApiCall(
-		supabase
-			.from('countries')
-			.select(COUNTRY_DATA_SELECT_QUERY)
-			.in('id', countryKeys)
-			.returns<FilterData>()
-	);
+	const [countryData, countryError]: [FilterData[], ServerErrorType | null] =
+		await genericApiCall<FilterData>(
+			supabase.from('countries').select(COUNTRY_DATA_SELECT_QUERY).in('id', countryKeys)
+		);
 
 	if (countryError) {
-		console.error(`Error fetching data from Countries: ${countryError}`);
-		return { saintData, countryData: [] };
-	}
-
-	if (!countryData) {
-		console.warn('No matching rows found in Country Data for the given foreign keys');
-		return { saintData, countryData: [] };
+		error(countryError.status, {
+			message: countryError.statusText
+		});
 	}
 
 	return {

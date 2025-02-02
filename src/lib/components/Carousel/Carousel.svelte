@@ -1,6 +1,6 @@
 <script lang="ts">
 
-	import type { CarouselItem } from '$lib/utils/types/DatabaseTypes';
+	import type { CarouselItem } from '$lib/utils/types/general-types';
 
 	const { items }: { items: CarouselItem[] } = $props();
 

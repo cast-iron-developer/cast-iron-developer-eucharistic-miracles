@@ -1,6 +1,6 @@
 <script lang="ts">
 
-	import type { ListData } from '$lib/utils/types/DatabaseTypes';
+	import type { ListData } from '$lib/utils/types/general-types';
 
 	interface ListProps {
 		list: ListData[];

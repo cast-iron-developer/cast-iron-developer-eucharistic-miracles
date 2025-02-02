@@ -1,24 +1,22 @@
 import { supabase } from '$lib/server/supabaseClient';
-import { genericApiCall } from '$lib/utils/apiUtils';
-import type { LanguageCodes, LanguageData } from '$lib/utils/types/DatabaseTypes';
+import { genericApiCall, LANGUAGE_DATA_SELECT_QUERY } from '$lib/utils/apiUtils';
+import type { LanguageCodes, LanguageData, ServerErrorType } from '$lib/utils/types/general-types';
 import type { PageServerLoad } from './$types';
+import { error } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async () => {
-	const [languageData, languageError] = await genericApiCall(
-		await supabase.from('languages').select('id, name, code').returns<LanguageData>()
-	);
+	const [languageData, languageError]: [LanguageData[], ServerErrorType | null] =
+		await genericApiCall<LanguageData>(
+			await supabase.from('languages').select(LANGUAGE_DATA_SELECT_QUERY)
+		);
 
 	if (languageError) {
-		console.error('Error fetching Language data.', languageError);
-		return { languageData: [], languageParams: [] };
+		error(languageError.status, {
+			message: languageError.statusText
+		});
 	}
 
-	if (!languageData || languageData.length === 0) {
-		console.error('No Language data found.');
-		return { languageData: [], languageParams: [] };
-	}
-
-	const languageParams: LanguageCodes[] = languageData
+	const languageParams: string[] = languageData
 		.filter((elem: LanguageData) => elem?.code)
 		.map((elem: LanguageCodes) => elem.code);
 

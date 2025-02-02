@@ -3,73 +3,83 @@ import { genericApiCall } from '$lib/utils/apiUtils';
 import type { Database } from '$lib/server/database.types';
 import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
+import type {
+	LanguageData,
+	MiracleTableType,
+	OurLadyTableType,
+	SaintTableType,
+	ServerErrorType
+} from '$lib/utils/types/general-types';
 
 type Saint = Database['public']['Tables']['saints']['Row'];
 
 export const load: PageServerLoad = async ({ params }) => {
 	if (params.language_code === null || params.language_code === undefined) {
-		console.error('Could not get data.');
 		error(400, {
 			message: 'Bad Request'
 		});
 	}
 
-	const [languageData, languageError] = await genericApiCall(
-		supabase.from('languages').select('*').eq('language_code', params.language_code)
-	);
+	const [languageData, languageError]: [LanguageData[], ServerErrorType | null] =
+		await genericApiCall(supabase.from('languages').select('*').eq('code', params.language_code));
 
 	if (languageError) {
-		console.log(languageError);
 		error(languageError.status, {
 			message: languageError.statusText
 		});
 	}
 
-	console.log('do we get here? we ought not');
-	const [miracleData, miracleError] = await genericApiCall(
-		supabase
-			.from('miracles')
-			.select('*')
-			.eq('deleted', false)
-			.eq('draft', false)
-			.eq('language_code', params.language_code)
-	);
+	const [miracleData, miracleError]: [MiracleTableType[], ServerErrorType | null] =
+		await genericApiCall(
+			supabase
+				.from('miracles')
+				.select('*')
+				.eq('deleted', false)
+				.eq('draft', false)
+				.eq('language_code', params.language_code)
+		);
 
 	if (miracleError) {
-		console.error('Error retrieving Miracle Data.', miracleError);
+		error(miracleError.status, {
+			message: miracleError.statusText
+		});
 	}
 
-	const [saintData, saintError] = await genericApiCall(
-		supabase
-			.from('saints')
-			.select('*')
-			.eq('deleted', false)
-			.eq('draft', false)
-			.eq('language_code', params.language_code)
-	);
+	const [saintData, saintError]: [SaintTableType[], ServerErrorType | null] =
+		await genericApiCall<SaintTableType>(
+			supabase
+				.from('saints')
+				.select('*')
+				.eq('deleted', false)
+				.eq('draft', false)
+				.eq('language_code', params.language_code)
+		);
 
 	if (saintError) {
-		console.error('Error retrieving Saint Data.', saintError);
+		error(saintError.status, {
+			message: saintError.statusText
+		});
 	}
 
-	const miraculousCommunions: Saint[] = saintData
+	const miraculousCommunions: {} = saintData
 		? saintData.filter((item: Saint) => item.miraculous_communion)
 		: {};
-	const saints: Saint[] = saintData
-		? saintData.filter((item: Saint) => !item.miraculous_communion)
-		: {};
+	const saints: {} = saintData ? saintData.filter((item: Saint) => !item.miraculous_communion) : {};
 
-	const [ourLadyData, ourLadyError] = await genericApiCall(
-		supabase
-			.from('our_lady')
-			.select('*')
-			.eq('deleted', false)
-			.eq('draft', false)
-			.eq('language_code', params.language_code)
-	);
+	const [ourLadyData, ourLadyError]: [OurLadyTableType[], ServerErrorType | null] =
+		await genericApiCall<OurLadyTableType>(
+			supabase
+				.from('our_lady')
+				.select('*')
+				.eq('deleted', false)
+				.eq('draft', false)
+				.eq('language_code', params.language_code)
+		);
 
 	if (ourLadyError) {
-		console.error('Error retrieving Data on Our Lady');
+		error(ourLadyError.status, {
+			message: ourLadyError.statusText
+		});
 	}
 
 	return {

@@ -74,3 +74,12 @@ export type NavigationItemType = {
 export type NavigationListType = {
 	navigationListItems: NavigationItemType[];
 };
+
+export type NavigationStyles = {
+	container: string;
+	menuButton: string;
+	mobileListStyles: string;
+	mobileItemStyles: string;
+	logoStyles: string;
+	desktopListStyles: string;
+};

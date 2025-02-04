@@ -1,7 +1,12 @@
 <script lang="ts">
 	import Icon from '$lib/components/Icon.svelte';
+	import type { NavigationListType } from '$lib/utils/types/general-types';
+	import { siteNavigation } from '$lib/components/globals/site-navigation';
 
 	let { urlParams: urlParam }: { urlParams: string } = $props();
+
+	const navigation: NavigationListType = $state(siteNavigation);
+
 	//TODO: refactor the nav items here
 </script>
 
@@ -19,10 +24,9 @@
 	{#if urlParam && urlParam !== ""}
 		<nav>
 			<h6 class="footer-title">Internal Links</h6>
-			<a href={`/${urlParam}/miracle`}>Miracles</a>
-			<a href={`/${urlParam}/our-lady`}>Our Lady</a>
-			<a href={`/${urlParam}/saints`}>Saints</a>
-			<a href={`/${urlParam}/communion`}>Communion</a>
+			{#each navigation.navigationListItems as item}
+				<a href={`/${urlParam}/${item.href}`}>{item.title}</a>
+			{/each}
 		</nav>
 	{/if}
 	<nav>

@@ -2,8 +2,7 @@ import type { HandleFetch, HandleServerError } from '@sveltejs/kit';
 import { type Handle, redirect } from '@sveltejs/kit';
 import { createServerClient } from '@supabase/ssr';
 import { sequence } from '@sveltejs/kit/hooks';
-
-import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public';
+import { env } from '$env/dynamic/private';
 
 // S.O. to https://joyofcode.xyz/sveltekit-hooks#error-logging
 
@@ -32,7 +31,7 @@ const supabase: Handle = async ({ event, resolve }) => {
 	 *
 	 * The Supabase client gets the Auth token from the request cookies.
 	 */
-	event.locals.supabase = createServerClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY, {
+	event.locals.supabase = createServerClient(env.SUPABASE_URL, env.SUPABASE_ANON_KEY, {
 		cookies: {
 			getAll: () => event.cookies.getAll(),
 			/**

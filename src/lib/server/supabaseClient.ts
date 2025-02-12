@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { env } from '$env/dynamic/private';
 import type { Database } from '$lib/server/database.types';
 
@@ -20,4 +20,4 @@ const getAnonKey = (key: string | undefined) => {
 
 export const project: string | undefined = getSupabaseUrl(env.SUPABASE_URL);
 export const anonKey: string | undefined = getAnonKey(env.SUPABASE_ANON_KEY);
-export const supabase = createClient<Database>(project, anonKey);
+export const supabase: SupabaseClient = createClient<Database>(project, anonKey);

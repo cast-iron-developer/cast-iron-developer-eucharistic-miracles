@@ -8,6 +8,7 @@
 			<h1 class="text-6xl mb-5">{page.status} | {page.error?.message}</h1>
 			<p>While this is certainly not what you had hoped for, I can guarantee that we are just as frustrated.</p>
 			<p>In your charity, feel free to offer up a <strong>Hail Mary</strong> on our behalf.</p>
+			<br>
 			<p>Blessed Carlo, <strong>Pray for Us</strong></p>
 		</div>
 	</article>

@@ -1,6 +1,6 @@
 import { supabase } from '$lib/server/supabaseClient';
 
-import type { PageServerLoad } from './$types';
+import type { PageServerLoad } from '../../../../.svelte-kit/types/src/routes';
 import {
 	COUNTRY_DATA_SELECT_QUERY,
 	genericApiCall,

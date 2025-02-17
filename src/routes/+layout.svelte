@@ -1,19 +1,20 @@
-<script>
-	import { invalidate } from '$app/navigation';
-	import { onMount } from 'svelte';
+<script lang="ts">
+	import '../app.scss';
+	import Navbar from '$lib/components/globals/navigation/site/navbar.svelte';
+	import Footer from '$lib/components/globals/footer/footer.svelte';
+	import type { Snippet } from 'svelte';
+	import type { LayoutServerData } from '../../.svelte-kit/types/src/routes';
+	import { siteNavigation } from '$lib/components/globals/site-navigation';
+	import type { NavigationListType } from '$lib/utils/types/general-types';
 
-	let { data, children } = $props();
-	let { session, supabase } = $derived(data);
+	let { data, children }: { data: LayoutServerData, children: Snippet } = $props();
 
-	onMount(() => {
-		const { data } = supabase.auth.onAuthStateChange((_, newSession) => {
-			if (newSession?.expires_at !== session?.expires_at) {
-				invalidate('supabase:auth');
-			}
-		});
+	const navigation: NavigationListType = $state(siteNavigation);
 
-		return () => data.subscription.unsubscribe();
-	});
 </script>
 
-{@render children()}
+<Navbar isAdmin={false} urlParams={data?.currentLanguageParam} navigationItems={navigation}></Navbar>
+<main class="site font-montserrat">
+	{@render children()}
+</main>
+<Footer urlParams={data?.currentLanguageParam}></Footer>

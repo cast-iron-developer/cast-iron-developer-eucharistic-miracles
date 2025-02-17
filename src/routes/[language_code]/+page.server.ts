@@ -1,7 +1,7 @@
 import { supabase } from '$lib/server/supabaseClient';
 import { genericApiCall } from '$lib/utils/apiUtils';
 import type { Database } from '$lib/server/database.types';
-import type { PageServerLoad } from './$types';
+import type { PageServerLoad } from '../../../.svelte-kit/types/src/routes';
 import { error } from '@sveltejs/kit';
 import type {
 	LanguageData,

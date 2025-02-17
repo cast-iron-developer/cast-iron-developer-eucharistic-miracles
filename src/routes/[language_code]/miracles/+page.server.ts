@@ -1,6 +1,5 @@
 import { supabase } from '$lib/server/supabaseClient';
-
-import type { PageServerLoad } from './$types';
+import type { PageServerLoad } from '../../../../.svelte-kit/types/src/routes';
 import {
 	COUNTRY_DATA_SELECT_QUERY,
 	genericApiCall,
@@ -10,31 +9,28 @@ import type { FilterData, ListData, ServerErrorType } from '$lib/utils/types/gen
 import { error } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async ({ params }) => {
-	const [saintData, saintError]: [ListData[], ServerErrorType | null] =
+	const [miracleData, miracleError]: [ListData[], ServerErrorType | null] =
 		await genericApiCall<ListData>(
 			supabase
-				.from('saints')
+				.from('miracles')
 				.select(LIST_DATA_SELECT_QUERY)
 				.eq('language_code', params.language_code)
-				.eq('miraculous_communion', false)
 				.eq('deleted', false)
 				.eq('draft', false)
 		);
 
-	if (saintError) {
-		error(saintError.status, {
-			message: saintError.statusText
+	if (miracleError) {
+		error(miracleError.status, {
+			message: miracleError.statusText
 		});
 	}
 
-	const countryKeys: string[] = saintData
+	const countryKeys: string[] = miracleData
 		.map((data: ListData) => data.countries?.id)
 		.filter((id): id is string => id !== null && id !== undefined);
 
 	if (countryKeys.length === 0) {
-		error(404, {
-			message: "Could not get Country ID from Our Lady's Data."
-		});
+		error(418, 'Could not get Country ID from Miracle Data.');
 	}
 
 	const [countryData, countryError]: [FilterData[], ServerErrorType | null] =
@@ -49,7 +45,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	}
 
 	return {
-		saintData,
+		miracleData,
 		countryData
 	};
 };

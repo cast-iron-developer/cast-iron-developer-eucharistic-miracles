@@ -7,7 +7,7 @@ import { env } from '$env/dynamic/private';
 // S.O. to https://joyofcode.xyz/sveltekit-hooks#error-logging
 
 export const handleFetch: HandleFetch = async ({ request, fetch }) => {
-	if (request.url.startsWith('http')) {
+	if (request.url.startsWith('http') && !request.url.startsWith('https')) {
 		const url = request.url.replace('http', 'https');
 		request = new Request(url, request);
 
@@ -88,12 +88,12 @@ const authGuard: Handle = async ({ event, resolve }) => {
 	event.locals.session = session;
 	event.locals.user = user;
 
-	if (!event.locals.session && event.url.pathname.startsWith('/private')) {
+	if (!event.locals.session && event.url.pathname.startsWith('/auth/private')) {
 		redirect(303, '/auth');
 	}
 
 	if (event.locals.session && event.url.pathname === '/auth') {
-		redirect(303, '/private');
+		redirect(303, '/auth/private');
 	}
 
 	return resolve(event);

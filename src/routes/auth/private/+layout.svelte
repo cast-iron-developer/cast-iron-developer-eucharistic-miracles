@@ -1,11 +1,21 @@
-<script>
+<script lang="ts">
+
+	import { goto } from '$app/navigation';
+
 	let { data, children } = $props();
 	let { supabase } = $derived(data);
 
 	const logout = async () => {
-		const { error } = await supabase.auth.signOut();
-		if (error) {
-			console.error(error);
+		try {
+			const { error } = await supabase.auth.signOut();
+
+			if (!error) {
+				// if we received no auth errors, navigate home.
+				await goto('/');
+			}
+
+		} catch (error: any) {
+			console.log(error);
 		}
 	};
 </script>

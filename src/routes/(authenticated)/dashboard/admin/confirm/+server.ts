@@ -26,6 +26,6 @@ export const GET: RequestHandler = async ({ url, locals: { supabase } }) => {
 		}
 	}
 
-	redirectTo.pathname = '/dashboard/auth/error';
+	redirectTo.pathname = '/dashboard/admin/error';
 	redirect(303, redirectTo);
 };

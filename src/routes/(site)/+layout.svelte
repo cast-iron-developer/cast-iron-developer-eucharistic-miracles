@@ -1,9 +1,9 @@
 <script lang="ts">
-	import '../app.scss';
+	import '../../app.scss';
 	import Navbar from '$lib/components/globals/navigation/site/navbar.svelte';
 	import Footer from '$lib/components/globals/footer/footer.svelte';
 	import type { Snippet } from 'svelte';
-	import type { LayoutServerData } from '../../.svelte-kit/types/src/routes';
+	import type { LayoutServerData } from './$types';
 	import { siteNavigation } from '$lib/components/globals/site-navigation';
 	import type { NavigationListType } from '$lib/utils/types/general-types';
 

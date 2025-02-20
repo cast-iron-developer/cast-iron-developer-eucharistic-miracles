@@ -1,9 +1,16 @@
-<script>
+<script lang="ts">
 	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
 
+	import '../../../app.scss';
+	import Navbar from '$lib/components/globals/navigation/site/navbar.svelte';
+	import { dashboardNavigation } from '$lib/components/globals/dashboard-navigation';
+	import type { NavigationListType } from '$lib/utils/types/general-types.js';
+
 	let { data, children } = $props();
 	let { session, supabase } = $derived(data);
+
+	const navigation: NavigationListType = $state(dashboardNavigation);
 
 	onMount(() => {
 		const { data } = supabase.auth.onAuthStateChange((_, newSession) => {
@@ -16,4 +23,7 @@
 	});
 </script>
 
-{@render children()}
+<Navbar isAdmin={true} urlParams={'admin'} navigationItems={navigation}></Navbar>
+<main class="admin font-montserrat bg-backgroundWhite h-[calc(100vh-76px)]">
+	{@render children()}
+</main>

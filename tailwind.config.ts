@@ -134,8 +134,14 @@ export default {
 					800: '#fff099',
 					900: '#fff7cc'
 				},
+				backgroundWhite: {
+					DEFAULT: '#f2f4f7'
+				},
 				white: {
 					DEFAULT: '#eee'
+				},
+				trueWhite: {
+					DEFAULT: '#fff'
 				},
 				black: {
 					DEFAULT: '#333'

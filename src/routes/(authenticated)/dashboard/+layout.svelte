@@ -11,6 +11,13 @@
 	let { session, supabase } = $derived(data);
 
 	const navigation: NavigationListType = $state(dashboardNavigation);
+	const authenticated: boolean = $derived.by(() => {
+		if (data.session && data.user) {
+			return true;
+		} else {
+			return false;
+		}
+	});
 
 	onMount(() => {
 		const { data } = supabase.auth.onAuthStateChange((_, newSession) => {
@@ -23,7 +30,7 @@
 	});
 </script>
 
-<Navbar isAdmin={true} urlParams={'admin'} navigationItems={navigation}></Navbar>
+<Navbar isAdmin={true} urlParams={'admin'} navigationItems={navigation} isAuthenticated={authenticated}></Navbar>
 <main class="admin font-montserrat bg-backgroundWhite h-[calc(100vh-76px)]">
 	{@render children()}
 </main>

@@ -11,7 +11,7 @@
 
 			if (!error) {
 				// if we received no auth errors, navigate home.
-				await goto('/');
+				await goto('/dashboard');
 			}
 
 		} catch (error: any) {

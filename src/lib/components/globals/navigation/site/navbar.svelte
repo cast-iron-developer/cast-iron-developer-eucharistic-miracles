@@ -1,12 +1,14 @@
 <script lang="ts">
 	import Icon from '$lib/components/Icon.svelte';
-	import NavigationList from '$lib/components/globals/nav-list.svelte';
+	import MobileNavItems from '$lib/components/globals/navigation/mobile-nav-items.svelte';
+	import DesktopNavItems from '$lib/components/globals/navigation/desktop-nav-items.svelte';
 	import type { NavigationListType, NavigationStyles } from '$lib/utils/types/general-types';
 
-	let { isAdmin: isAdmin, urlParams: urlParam, navigationItems: navigationItems }: {
+	let { isAdmin: isAdmin, urlParams: urlParam, navigationItems: navigationItems, isAuthenticated: isAuthenticated }: {
 		isAdmin: boolean
 		urlParams?: string,
-		navigationItems: NavigationListType
+		navigationItems: NavigationListType,
+		isAuthenticated?: boolean,
 	} = $props();
 
 	const adminStyles: NavigationStyles = {
@@ -31,41 +33,20 @@
 <div class={isAdmin ? adminStyles.container : defaultStyles.container}>
 	<div class="navbar mx-auto only-lg:max-w-5xl only-xl:max-w-6xl to-2xl:max-w-7xl">
 		<div class="navbar-start">
-			{#if (urlParam && urlParam !== "") || urlParam === 'admin'}
-				<div class="dropdown mr-2">
-					<div tabindex="0" role="button" class={isAdmin ? adminStyles.menuButton : defaultStyles.menuButton}>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							class="h-5 w-5"
-							viewBox="0 0 24 24"
-							stroke="#eeeeee">
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M4 6h16M4 12h8m-8 6h16" />
-						</svg>
-					</div>
-					<NavigationList
-						listStyles={isAdmin ? adminStyles.mobileListStyles : defaultStyles.mobileListStyles}
-						listItemStyles={isAdmin ? adminStyles.mobileItemStyles : defaultStyles.mobileItemStyles}
-						listData={navigationItems}
-						urlParam={urlParam} />
-				</div>
+			{#if isAdmin && isAuthenticated && urlParam === 'admin'}
+				<MobileNavItems styles={adminStyles} listData={navigationItems} urlParam={urlParam} />
+			{:else if !isAdmin && (urlParam && urlParam !== "")}
+				<MobileNavItems styles={defaultStyles} listData={navigationItems} urlParam={urlParam} />
 			{/if}
 			<a href="/" class={isAdmin ? adminStyles.logoStyles : defaultStyles.logoStyles}>
 				<Icon height="3rem" width="3rem" />
 				<span class="ml-2 text-nowrap">Eucharistic Miracles</span>
 			</a>
 		</div>
-		{#if (urlParam && urlParam !== "") || urlParam === 'admin'}
-			<div class="navbar-end hidden lg:flex">
-				<NavigationList
-					listStyles={"menu menu-horizontal px-1 text-white"}
-					listItemStyles={isAdmin ? adminStyles.desktopListStyles : defaultStyles.desktopListStyles}
-					listData={navigationItems}
-					urlParam={urlParam} />
-			</div>
+		{#if isAdmin && isAuthenticated && urlParam === 'admin'}
+			<DesktopNavItems styles={adminStyles} listData={navigationItems} urlParam={urlParam} />
+		{:else if !isAdmin && (urlParam && urlParam !== "")}
+			<DesktopNavItems styles={defaultStyles} listData={navigationItems} urlParam={urlParam} />
 		{/if}
 	</div>
 </div>

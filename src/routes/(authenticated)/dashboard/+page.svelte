@@ -1,5 +1,9 @@
-<script>
-	let { data } = $props();
+<script lang="ts">
+
+
+	import type { LoginFormType } from '$lib/utils/types/auth-types';
+
+	let { form }: { form: LoginFormType } = $props();
 </script>
 
 <section class="container mx-auto py-20 h-full">
@@ -12,7 +16,14 @@
 		<div class="form mx-auto ">
 			<h2 class="text-xl mb-4 text-tert-100 text-center">Please Sign-in to proceed.</h2>
 			<form class="mx-auto w-80" method="POST" action="?/login">
-				<label class="input input-bordered text-tert-100 flex items-center gap-2 mb-5">
+				{#if form?.errors?.message}
+					<div class="mb-5">
+						<p class="label-text-alt text-error">{form?.errors?.message}</p>
+					</div>
+				{/if}
+				<div class={form?.errors?.email ? '' : 'mb-5' }>
+					<label
+						class="input input-bordered text-tert-100 flex items-center gap-2  {form?.errors?.email ? 'input-error' : ''}">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 16 16"
@@ -23,9 +34,17 @@
 						<path
 							d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
 					</svg>
-					<input type="text" class="grow" name="email" placeholder="Email" />
+						<input type="text" class="grow" name="email" placeholder="Email" value={form?.data?.email ?? ''} />
 				</label>
-				<label class="input input-bordered text-tert-100 flex items-center gap-2 mb-5">
+					{#if form?.errors?.email}
+						<label for="email" class="label">
+							<span class="label-text-alt text-error">{form?.errors?.email}</span>
+						</label>
+					{/if}
+				</div>
+				<div class={form?.errors?.password ? '' : 'mb-5' }>
+					<label
+						class="input input-bordered text-tert-100 flex items-center gap-2 {form?.errors?.password ? 'input-error' : ''}">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 16 16"
@@ -36,9 +55,16 @@
 							d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
 							clip-rule="evenodd" />
 					</svg>
-					<input type="password" class="grow" name="password" value="password" />
+						<input type="password" class="grow" name="password" value="" placeholder="Password" />
 				</label>
-				<button class="btn btn-outline w-full mb-5 sm:btn-sm md:btn-md ">Login</button>
+					{#if form?.errors?.password}
+						<label for="password" class="label">
+							<span class="label-text-alt text-error">{form?.errors?.password}</span>
+						</label>
+					{/if}
+				</div>
+				<button class="btn btn-outline w-full sm:btn-sm md:btn-md ">Login</button>
+				<div class="divider"></div>
 				<button class="btn btn-outline btn-primary w-full sm:btn-sm md:btn-md" formaction="?/signup">Sign Up
 				</button>
 			</form>

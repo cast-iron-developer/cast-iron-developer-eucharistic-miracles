@@ -35,3 +35,5 @@ npm run build
 
 When creating Supabase tables you can easily and seamlessly add those types to your local build folowing the steps
 here: [Generating Typescript Types](https://supabase.com/docs/guides/api/rest/generating-types)
+
+https://supabase.com/docs/guides/getting-started/tutorials/with-sveltekit

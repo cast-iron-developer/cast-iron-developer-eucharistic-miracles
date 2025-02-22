@@ -10,8 +10,6 @@ export const handleFetch: HandleFetch = async ({ request, fetch }) => {
 	if (request.url.startsWith('http') && !request.url.startsWith('https')) {
 		const url = request.url.replace('http', 'https');
 		request = new Request(url, request);
-
-		console.log(request.url);
 	}
 
 	return fetch(request);
@@ -88,8 +86,8 @@ const authGuard: Handle = async ({ event, resolve }) => {
 	event.locals.session = session;
 	event.locals.user = user;
 
-	if (!event.locals.session && event.url.pathname.startsWith('/dashboard/admin/private')) {
-		redirect(303, '/dashboard/admin');
+	if (!event.locals.session && event.url.pathname.startsWith('/dashboard/admin')) {
+		redirect(303, '/dashboard');
 	}
 
 	if (event.locals.session && event.url.pathname === '/dashboard/admin') {

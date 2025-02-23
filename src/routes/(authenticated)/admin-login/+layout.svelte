@@ -1,12 +1,11 @@
 <script lang="ts">
-	import { goto, invalidate } from '$app/navigation';
+	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
 
 	import '../../../app.scss';
 	import Navbar from '$lib/components/globals/navigation/navbar.svelte';
 	import { dashboardNavigation } from '$lib/components/globals/dashboard-navigation';
 	import type { NavigationListType } from '$lib/utils/types/general-types.js';
-	import { useDebug } from '$lib/utils/helpers/environment';
 
 	let { data, children } = $props();
 	let { session, supabase } = $derived(data);
@@ -25,26 +24,9 @@
 
 		return () => data.subscription.unsubscribe();
 	});
-
-	const logout = async () => {
-		try {
-			const { error } = await supabase.auth.signOut();
-
-			if (!error) {
-				// if we received no auth errors, navigate home.
-				await goto('/admin-login');
-			}
-
-		} catch (error: any) {
-			if (useDebug()) {
-				console.log(error);
-			}
-		}
-	};
 </script>
 
-<Navbar isAdmin={true} urlParams={'admin'} navigationItems={navigation} isAuthenticated={authenticated}
-				logout={logout}></Navbar>
+<Navbar isAdmin={false} navigationItems={navigation} isAuthenticated={authenticated}></Navbar>
 <main class="admin font-montserrat bg-backgroundWhite h-[calc(100vh-76px)]">
 	{@render children()}
 </main>

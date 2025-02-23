@@ -4,11 +4,18 @@
 	import DesktopNavItems from '$lib/components/globals/navigation/desktop-nav-items.svelte';
 	import type { NavigationListType, NavigationStyles } from '$lib/utils/types/general-types';
 
-	let { isAdmin: isAdmin, urlParams: urlParam, navigationItems: navigationItems, isAuthenticated: isAuthenticated }: {
+	let {
+		isAdmin: isAdmin,
+		urlParams: urlParam,
+		navigationItems: navigationItems,
+		isAuthenticated: isAuthenticated,
+		logout: logout
+	}: {
 		isAdmin: boolean
 		urlParams?: string,
 		navigationItems: NavigationListType,
 		isAuthenticated?: boolean,
+		logout?: any
 	} = $props();
 
 	const adminStyles: NavigationStyles = {
@@ -47,6 +54,11 @@
 			<DesktopNavItems styles={adminStyles} listData={navigationItems} urlParam={urlParam} />
 		{:else if !isAdmin && (urlParam && urlParam !== "")}
 			<DesktopNavItems styles={defaultStyles} listData={navigationItems} urlParam={urlParam} />
+		{/if}
+		{#if isAdmin && isAuthenticated}
+			<div class="navbar-end">
+				<button class="flex-end btn btn-active btn-neutral" onclick={logout}>Logout</button>
+			</div>
 		{/if}
 	</div>
 </div>

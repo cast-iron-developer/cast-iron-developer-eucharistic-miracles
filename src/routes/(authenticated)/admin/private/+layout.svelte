@@ -22,7 +22,7 @@
 
 <header>
 	<nav>
-		<a href="/">Home</a>
+		<a href="/static">Home</a>
 	</nav>
 	<button onclick={logout}>Logout</button>
 </header>

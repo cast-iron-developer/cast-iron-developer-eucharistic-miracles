@@ -1,3 +1,9 @@
+<script lang="ts">
+	import assisi from '$lib/images/francis-assisi.webp';
+	import our_lady from '$lib/images/our-lady.webp';
+	import eucharist from '$lib/images/eucharist.webp';
+</script>
+
 <section class="bg-white">
 	<section class="container py-16">
 		<article id="admin" class="my-10">
@@ -6,49 +12,50 @@
 				Blessed Mother that we have been able to compile and/or borrowed from Bl. Carlo's website.</p>
 		</article>
 		<article id="miracles" class="my-10">
-			<div class="card lg:card-side bg-base-100 shadow-xl">
-				<figure>
+			<div class="card lg:card-side bg-base-100 shadow-xl from-xl:max-w-2xl to-lg:max-w-fit mx-auto">
+				<figure class="lg:max-w-80 to-lg:max-w-lg">
 					<img
-						src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp"
-						alt="Album" />
+						src={eucharist}
+						alt="Eucharist in Monstrance" />
 				</figure>
 				<div class="card-body">
 					<h2 class="card-title">Miracles</h2>
 					<p></p>
 					<div class="card-actions justify-end">
-						<button class="btn btn-primary">Go to Miracles</button>
+						<a href="dashboard/miracles" class="btn btn-primary">Go to Miracles</a>
 					</div>
 				</div>
 			</div>
 		</article>
 		<article id="saints" class="my-10">
-			<div class="card lg:card-side bg-base-100 shadow-xl">
-				<figure>
+			<div class="card lg:card-side bg-base-100 shadow-xl from-xl:max-w-2xl to-lg:max-w-fit mx-auto">
+				<figure class="lg:max-w-80 to-lg:max-w-lg">
 					<img
-						src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp"
-						alt="Album" />
+						src={assisi}
+						alt="Statue of St. Francis of Assisi" />
 				</figure>
 				<div class="card-body">
 					<h2 class="card-title">Saints &amp; Miraculous Communions</h2>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 					<div class="card-actions justify-end">
-						<button class="btn btn-primary">Go to Saints</button>
+						<a href="/dashboard/saints" class="btn btn-primary">Go to Saints</a>
 					</div>
 				</div>
 			</div>
 		</article>
 		<article id="our-lady" class="my-10">
-			<div class="card lg:card-side bg-base-100 shadow-xl">
-				<figure>
+			<div
+				class="card lg:card-side bg-base-100 shadow-xl from-xl:max-w-2xl to-lg:max-w-fit mx-auto">
+				<figure class="lg:max-w-80 to-lg:max-w-lg">
 					<img
-						src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp"
-						alt="Album" />
+						src={our_lady}
+						alt="Statue of Our Lady" />
 				</figure>
 				<div class="card-body">
 					<h2 class="card-title">Our Lady</h2>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 					<div class="card-actions justify-end">
-						<button class="btn btn-primary">Go to Saints</button>
+						<a href="/dashboard/our-lady" class="btn btn-primary">Go to Our Lady</a>
 					</div>
 				</div>
 			</div>

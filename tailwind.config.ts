@@ -157,5 +157,18 @@ export default {
 				wiggle: 'wiggle 200ms ease-in-out'
 			}
 		}
+	},
+	daisyui: {
+		themes: [
+			{
+				myTheme: {
+					primary: '#0b1f12',
+					neutral: '#333333',
+					error: '#c5283d',
+					success: 'green',
+					info: 'blue'
+				}
+			}
+		]
 	}
 } satisfies Config;

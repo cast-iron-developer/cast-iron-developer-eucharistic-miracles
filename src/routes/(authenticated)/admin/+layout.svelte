@@ -4,7 +4,7 @@
 
 <header>
 	<nav>
-		<a href="/">Home</a>
+		<a href="/static">Home</a>
 	</nav>
 </header>
 

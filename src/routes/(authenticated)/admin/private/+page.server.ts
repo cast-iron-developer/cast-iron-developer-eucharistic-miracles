@@ -1,4 +1,4 @@
-import type { PageServerLoad } from './$types';
+import type { PageServerLoad } from '../../../../../.svelte-kit/types/src/routes';
 
 export const load: PageServerLoad = async ({ depends, locals: { supabase } }) => {
 	depends('supabase:db:notes');

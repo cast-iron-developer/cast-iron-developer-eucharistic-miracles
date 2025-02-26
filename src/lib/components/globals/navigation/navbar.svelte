@@ -13,10 +13,12 @@
 	}: {
 		isAdmin: boolean
 		urlParams?: string,
-		navigationItems: NavigationListType,
+		navigationItems?: NavigationListType,
 		isAuthenticated?: boolean,
 		logout?: any
 	} = $props();
+
+	const homePath: string = isAdmin && isAuthenticated ? '/dashboard' : '/';
 
 	const adminStyles: NavigationStyles = {
 		container: 'sticky top-0 z-50 bg-tert-100',
@@ -40,24 +42,24 @@
 <div class={isAdmin ? adminStyles.container : defaultStyles.container}>
 	<div class="navbar mx-auto only-lg:max-w-5xl only-xl:max-w-6xl to-2xl:max-w-7xl">
 		<div class="navbar-start">
-			{#if isAdmin && isAuthenticated && urlParam === 'admin'}
-				<MobileNavItems styles={adminStyles} listData={navigationItems} urlParam={urlParam} />
+			{#if isAdmin && isAuthenticated && urlParam === 'dashboard'}
+				<MobileNavItems styles={adminStyles} listData={navigationItems ?? undefined} urlParam={urlParam} />
 			{:else if !isAdmin && (urlParam && urlParam !== "")}
-				<MobileNavItems styles={defaultStyles} listData={navigationItems} urlParam={urlParam} />
+				<MobileNavItems styles={defaultStyles} listData={navigationItems ?? undefined} urlParam={urlParam} />
 			{/if}
-			<a href="/" class={isAdmin ? adminStyles.logoStyles : defaultStyles.logoStyles}>
+			<a href={homePath} class={isAdmin ? adminStyles.logoStyles : defaultStyles.logoStyles}>
 				<Icon height="3rem" width="3rem" />
 				<span class="ml-2 text-nowrap">Eucharistic Miracles</span>
 			</a>
 		</div>
-		{#if isAdmin && isAuthenticated && urlParam === 'admin'}
+		{#if isAdmin && isAuthenticated && urlParam === 'dashboard'}
 			<DesktopNavItems styles={adminStyles} listData={navigationItems} urlParam={urlParam} />
 		{:else if !isAdmin && (urlParam && urlParam !== "")}
 			<DesktopNavItems styles={defaultStyles} listData={navigationItems} urlParam={urlParam} />
 		{/if}
 		{#if isAdmin && isAuthenticated}
 			<div class="navbar-end">
-				<button class="flex-end btn btn-active btn-neutral" onclick={logout}>Logout</button>
+				<button class="flex-end btn btn-active btn-error" onclick={logout}>Logout</button>
 			</div>
 		{/if}
 	</div>

@@ -4,7 +4,7 @@
 
 	let { styles: styles, listData: listData, urlParam: urlParam }: {
 		styles: NavigationStyles,
-		listData: NavigationListType,
+		listData?: NavigationListType,
 		urlParam: string
 	} = $props();
 

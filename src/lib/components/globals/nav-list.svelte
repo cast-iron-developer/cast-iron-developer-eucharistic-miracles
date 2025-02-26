@@ -6,7 +6,7 @@
 	type NavigationListProps = {
 		listStyles?: string,
 		listItemStyles?: string,
-		listData: NavigationListType
+		listData?: NavigationListType
 		urlParam: string
 	}
 
@@ -18,8 +18,10 @@
 	}: NavigationListProps = $props();
 </script>
 
-<ul class={listStyles ?? ''}>
-	{#each listData.navigationListItems as item}
-		<NavigationItem item={item} styles={listItemStyles ?? ''} param={urlParam}></NavigationItem>
-	{/each}
-</ul>
+{#if listData && listData !== null}
+	<ul class={listStyles ?? ''}>
+		{#each listData.navigationListItems as item}
+			<NavigationItem item={item} styles={listItemStyles ?? ''} param={urlParam}></NavigationItem>
+		{/each}
+	</ul>
+{/if}

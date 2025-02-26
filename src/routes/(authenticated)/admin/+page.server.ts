@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 
-import type { Actions } from './$types';
+import type { Actions } from '../../../../.svelte-kit/types/src/routes';
 
 export const actions: Actions = {
 	signup: async ({ request, locals: { supabase } }) => {
@@ -11,7 +11,7 @@ export const actions: Actions = {
 		const { error } = await supabase.auth.signUp({ email, password });
 		if (error) {
 			console.error(error);
-			redirect(303, '/dashboard/admin/error');
+			redirect(303, '/dashboard/error');
 		} else {
 			redirect(303, '/');
 		}
@@ -24,7 +24,7 @@ export const actions: Actions = {
 		const { error } = await supabase.auth.signInWithPassword({ email, password });
 		if (error) {
 			console.error(error);
-			redirect(303, '/dashboard/admin/error');
+			redirect(303, '/dashboard/error');
 		} else {
 			redirect(303, '/dashboard/admin/private');
 		}

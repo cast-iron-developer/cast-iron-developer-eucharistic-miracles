@@ -3,7 +3,7 @@ import { redirect } from '@sveltejs/kit';
 import { ZodError } from 'zod';
 import { AuthApiError } from '@supabase/supabase-js';
 import { loginSchema } from '$lib/utils/authSchema/login-schema';
-import { useDebug } from '$lib/utils/helpers/environment';
+import { useDebug } from '$lib/utils/helpers/server-environment-helpers';
 
 export const actions: Actions = {
 	signup: async ({ request, locals: { supabase } }) => {

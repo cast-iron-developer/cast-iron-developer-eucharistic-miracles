@@ -10,6 +10,11 @@ export type MiracleWithCountry = MiracleTableType & {
 	countries?: CountryType;
 };
 
+export type FullMiracleData = MiracleTableType & {
+	countries?: CountryType;
+	languages?: LanguageType;
+};
+
 export type OurLadyWithCountry = OurLadyTableType & {
 	countries?: CountryType;
 };
@@ -45,6 +50,11 @@ export type LanguageCodes = {
 
 export type CountryType = {
 	id: string;
+	name?: string;
+};
+
+export type LanguageType = {
+	code?: string;
 	name?: string;
 };
 

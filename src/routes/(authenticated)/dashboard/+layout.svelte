@@ -6,7 +6,7 @@
 	import Navbar from '$lib/components/globals/navigation/navbar.svelte';
 	import { dashboardNavigation } from '$lib/components/globals/dashboard-navigation';
 	import type { NavigationListType } from '$lib/utils/types/general-types.js';
-	import { useDebug } from '$lib/utils/helpers/environment';
+	import { useDebug } from '$lib/utils/helpers/client-environment-helpers';
 
 	let { data, children } = $props();
 	let { session, supabase } = $derived(data);
@@ -43,7 +43,7 @@
 	};
 </script>
 
-<Navbar isAdmin={true} urlParams={'admin'} navigationItems={navigation} isAuthenticated={authenticated}
+<Navbar isAdmin={true} urlParams={'dashboard'} navigationItems={navigation} isAuthenticated={authenticated}
 				logout={logout}></Navbar>
 <main class="admin font-montserrat bg-backgroundWhite h-[calc(100vh-76px)]">
 	{@render children()}

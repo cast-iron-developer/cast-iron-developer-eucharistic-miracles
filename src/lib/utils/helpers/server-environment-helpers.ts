@@ -7,6 +7,7 @@ export const isDevEnvironment = (): boolean => {
 export const isProdEnvironment = (): boolean => {
 	return Boolean(env.USE_PROD).valueOf();
 };
+
 export const useDebug = (): boolean => {
 	return Boolean(env.USE_DEBUG).valueOf();
 };

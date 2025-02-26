@@ -1,10 +1,12 @@
 import { supabase } from '$lib/server/supabaseClient';
 import { genericApiCall, LANGUAGE_DATA_SELECT_QUERY } from '$lib/utils/apiUtils';
 import type { LanguageCodes, LanguageData, ServerErrorType } from '$lib/utils/types/general-types';
-import type { LayoutServerLoad } from '../../.svelte-kit/types/src/routes';
 import { error } from '@sveltejs/kit';
 
-export const load: LayoutServerLoad = async ({ params }) => {
+export const load: ({ params }: { params: any }) => Promise<{
+	languageData: LanguageData[];
+	currentLanguageParam: string;
+}> = async ({ params }) => {
 	const [languageData, languageError]: [LanguageData[], ServerErrorType | null] =
 		await genericApiCall<LanguageData>(
 			await supabase.from('languages').select(LANGUAGE_DATA_SELECT_QUERY)

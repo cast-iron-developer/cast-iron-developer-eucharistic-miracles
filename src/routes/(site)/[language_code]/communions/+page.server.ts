@@ -1,6 +1,5 @@
 import { supabase } from '$lib/server/supabaseClient';
 
-import type { PageServerLoad } from '../../../../.svelte-kit/types/src/routes';
 import type { FilterData, ListData, ServerErrorType } from '$lib/utils/types/general-types';
 import {
 	COUNTRY_DATA_SELECT_QUERY,
@@ -9,7 +8,10 @@ import {
 } from '$lib/utils/apiUtils';
 import { error } from '@sveltejs/kit';
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load: ({ params }: { params: any }) => Promise<{
+	communionData: ListData[];
+	countryData: FilterData[];
+}> = async ({ params }) => {
 	const [communionData, communionError]: [ListData[], ServerErrorType | null] =
 		await genericApiCall<ListData>(
 			supabase

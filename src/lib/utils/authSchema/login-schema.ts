@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { isDevEnvironment, isProdEnvironment } from '$lib/utils/helpers/environment';
+import { isDevEnvironment, isProdEnvironment } from '$lib/utils/helpers/server-environment-helpers';
 
 export const loginSchema = z
 	.object({

@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 
 	import '../../../app.scss';
-	import Navbar from '$lib/components/globals/navigation/navbar.svelte';
+	import Navbar from '$lib/components/globals/navigation/site/navbar.svelte';
 
 	let { data, children } = $props();
 	let { session, supabase } = $derived(data);

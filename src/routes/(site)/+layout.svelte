@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../../app.scss';
-	import Navbar from '$lib/components/globals/navigation/navbar.svelte';
+	import Navbar from '$lib/components/globals/navigation/site/navbar.svelte';
 	import Footer from '$lib/components/globals/footer/footer.svelte';
 	import type { Snippet } from 'svelte';
 	import type { LayoutServerData } from './$types';

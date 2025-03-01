@@ -111,13 +111,13 @@ export type Database = {
           deleted: boolean | null
           draft: boolean | null
           id: string
-          language_code: string | null
+          language_code: string
           modified_at: string | null
           name: string
           occurrence_year: number | null
           quotes: string[] | null
           slug: string | null
-          story: Json | null
+          story: string
           type: Database["public"]["Enums"]["type"]
         }
         Insert: {
@@ -128,13 +128,13 @@ export type Database = {
           deleted?: boolean | null
           draft?: boolean | null
           id?: string
-          language_code?: string | null
+          language_code: string
           modified_at?: string | null
           name: string
           occurrence_year?: number | null
           quotes?: string[] | null
           slug?: string | null
-          story?: Json | null
+          story: string
           type?: Database["public"]["Enums"]["type"]
         }
         Update: {
@@ -145,13 +145,13 @@ export type Database = {
           deleted?: boolean | null
           draft?: boolean | null
           id?: string
-          language_code?: string | null
+          language_code?: string
           modified_at?: string | null
           name?: string
           occurrence_year?: number | null
           quotes?: string[] | null
           slug?: string | null
-          story?: Json | null
+          story?: string
           type?: Database["public"]["Enums"]["type"]
         }
         Relationships: [
@@ -171,6 +171,27 @@ export type Database = {
           },
         ]
       }
+      notes: {
+        Row: {
+          created_at: string
+          id: number
+          note: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: never
+          note: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          id?: never
+          note?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       our_lady: {
         Row: {
           base_translation: boolean | null
@@ -187,7 +208,7 @@ export type Database = {
           occurrence_year: number | null
           quotes: string[] | null
           slug: string | null
-          story: Json | null
+          story: string | null
           type: Database["public"]["Enums"]["type"]
         }
         Insert: {
@@ -205,7 +226,7 @@ export type Database = {
           occurrence_year?: number | null
           quotes?: string[] | null
           slug?: string | null
-          story?: Json | null
+          story?: string | null
           type?: Database["public"]["Enums"]["type"]
         }
         Update: {
@@ -223,7 +244,7 @@ export type Database = {
           occurrence_year?: number | null
           quotes?: string[] | null
           slug?: string | null
-          story?: Json | null
+          story?: string | null
           type?: Database["public"]["Enums"]["type"]
         }
         Relationships: [
@@ -302,7 +323,7 @@ export type Database = {
           name: string
           quotes: string[] | null
           slug: string | null
-          story: Json | null
+          story: string | null
           type: Database["public"]["Enums"]["type"]
         }
         Insert: {
@@ -322,7 +343,7 @@ export type Database = {
           name: string
           quotes?: string[] | null
           slug?: string | null
-          story?: Json | null
+          story?: string | null
           type?: Database["public"]["Enums"]["type"]
         }
         Update: {
@@ -342,7 +363,7 @@ export type Database = {
           name?: string
           quotes?: string[] | null
           slug?: string | null
-          story?: Json | null
+          story?: string | null
           type?: Database["public"]["Enums"]["type"]
         }
         Relationships: [
@@ -441,12 +462,12 @@ export type Database = {
     }
     Enums: {
       type:
-        | "saint"
-        | "miracle"
-        | "our-lady"
-        | "country"
-        | "language"
-        | "communion"
+        | "Saints"
+        | "Miracles"
+        | "Our Lady"
+        | "Country"
+        | "Language"
+        | "Communions"
     }
     CompositeTypes: {
       [_ in never]: never

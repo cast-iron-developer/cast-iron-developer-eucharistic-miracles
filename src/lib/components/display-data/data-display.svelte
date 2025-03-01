@@ -22,7 +22,7 @@
 	let countryTextInput: string = $state('');
 	let countries: FilterData[] = $state(countryData);
 	let list: ListData[] = $derived.by(() => {
-		if (currentFilters.countryIds && currentFilters.countryIds.length > 0) {
+		if (currentFilters.countryIds && currentFilters.countryIds.length > 0 || currentFilters.itemIds && currentFilters.itemIds.length > 0) {
 			return listData.filter((item: ListData) => {
 				if ((currentFilters?.countryIds && currentFilters?.countryIds?.length > 0) || (currentFilters?.itemIds && currentFilters?.itemIds?.length > 0)) {
 					return currentFilters?.countryIds?.includes((item.countries.id)) || currentFilters?.itemIds?.includes(item.id);

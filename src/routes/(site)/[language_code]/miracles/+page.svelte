@@ -4,7 +4,7 @@
 	import Citations from '$lib/components/citations/citations.svelte';
 
 	let { data } = $props();
-
+	console.log('data: ', data);
 </script>
 
 <svelte:head>

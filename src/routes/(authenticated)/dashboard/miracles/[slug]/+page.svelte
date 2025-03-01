@@ -1,59 +1,120 @@
 <script lang="ts">
-	let { data, form } = $props();
+	import { recordTypeEnum } from '$lib/utils/helpers/helper.utils';
+	import type { PageProps } from './$types';
+
+	let { data, form }: PageProps = $props();
 	console.log(form);
+	console.log(data);
+
+	const languages = $state(data.languageData);
+	const countries = $state(data.countryData);
+	const recordEnum = $state(recordTypeEnum);
+
+	let currentCountry = $state(data?.miracleData.country_id ?? '');
+	let currentLanguage = $state(data?.miracleData.language_code ?? '');
+	let currentType = $state(data?.miracleData.type ?? '');
 </script>
 
 <section class="bg-white">
 	<div class="container py-16">
 		<h1 class="text-3xl">Edit Page: <strong>{data.miracleData.name}</strong></h1>
 	</div>
-	<div>
+	<div class="container">
 		<form class="mx-auto" method="POST" action="?/update">
-			<div data-id="name">
-				<label for="name"></label>
-				<input id="name" type="text" name="name" placeholder="Miracle Name" value={form?.data?.name}>
-			</div>
-			<div data-id="blurb">
-				<label for="blurb"></label>
-				<input id="blurb" type="text" name="blurb" placeholder="Blurb" value={form?.data?.blurb}>
-			</div>
-			<div data-id="quotes">
-				<label for="quotes"></label>
-				<input id="quotes" type="text" name="quotes" placeholder="Quotes" value={form?.data?.quotes}>
-			</div>
-			<div data-id="story">
-				<label for="story"></label>
-				<textarea id="story" class="textarea textarea-bordered textarea-sm w-full max-w-xs" name="story"
-									placeholder="Story">
-					{form?.data?.story}
-				</textarea>
-			</div>
-			<div data-id="occurrence_year">
-				<label for="occurrence_year"></label>
-				<input id="occurrence_year" type="text" name="occurrence_year" placeholder="Year of Miracle"
-							 value={form?.data?.occurrence_year}>
-			</div>
-			<div data-id="base_translation">
-				<label for="base_translation"></label>
-				<input id="base_translation" type="checkbox" name="base_translation" value={form?.data?.base_translation}>
-			</div>
-			<div data-id="language_code">
-				<label for="language_code"></label>
-				<input id="language_code" type="text" name="language_code" placeholder="Language Code"
-							 value={form?.data?.language_code}>
-			</div>
-			<div data-id="type">
-				<label for="type">Type of Data (should set trigger to update)</label>
-				<input id="type" type="text" name="type" placeholder="type" value={form?.data?.type}>
-			</div>
-			<div data-id="draft">
-				<label for="draft"></label>
-				<input id="draft" type="checkbox" name="draft" value={form?.data?.draft}>
-			</div>
-			<div data-id="deleted">
-				<label for="deleted"></label>
-				<input id="deleted" type="checkbox" name="deleted" value={form?.data?.deleted}>
+			<fieldset data-id="name" class="fieldset">
+				<legend class="fieldset-legend">What is the name of the Miracle?</legend>
+				<input type="text" class="input" name="name" placeholder="Miracle Name"
+							 value={data?.miracleData.name} />
+				<p class="fieldset-label">Optional</p>
+			</fieldset>
+
+			<fieldset data-id="blurb" class="fieldset">
+				<legend class="fieldset-legend">What is the name of the Miracle?</legend>
+				<input type="text" class="input" name="blurb" placeholder="Miracle Blurb"
+							 value={data?.miracleData.blurb} />
+				<p class="fieldset-label">Optional</p>
+			</fieldset>
+
+			<fieldset data-id="quotes" class="fieldset">
+				<legend class="fieldset-legend">What is the name of the Miracle?</legend>
+				<input type="text" class="input" name="quotes" placeholder="Quotes"
+							 value={data?.miracleData.quotes} />
+				<p class="fieldset-label">Optional</p>
+			</fieldset>
+
+			<fieldset data-id="story" class="fieldset">
+				<legend class="fieldset-legend">Story</legend>
+				<textarea class="textarea h-24" placeholder="Story of the Miracle">{data?.miracleData.story}</textarea>
+				<div class="fieldset-label">Optional</div>
+			</fieldset>
+
+			<fieldset data-id="occurrence_year" class="fieldset">
+				<legend class="fieldset-legend">What is the name of the Miracle?</legend>
+				<input type="text" class="input" name="occurrence_year" placeholder="Year of the Miracle"
+							 value={data?.miracleData.occurrence_year} />
+				<p class="fieldset-label">Optional</p>
+			</fieldset>
+
+			<fieldset data-id="base_translation" class="fieldset p-4 bg-base-100 border border-base-300 rounded-box w-64">
+				<label class="fieldset-label">
+					<input type="checkbox" checked={data?.miracleData.base_translation} class="checkbox" />
+					Is this the base Translation of the Miracle
+				</label>
+			</fieldset>
+
+			<fieldset data-id="language_code" class="fieldset">
+				<legend class="fieldset-legend">What is the language of this translation?</legend>
+				<select class="select" bind:value={currentLanguage}>
+					{#each data.languageData as language}
+						<option value={language.code}>{language.name}</option>
+					{/each}
+				</select>
+				<span class="fieldset-label">Optional</span>
+			</fieldset>
+
+			<fieldset data-id="type" class="fieldset">
+				<legend class="fieldset-legend">Record Type</legend>
+				<select class="select capitalize" bind:value={currentType}>
+					{#each recordEnum as item}
+						<option value={item}>{item}</option>
+					{/each}
+				</select>
+				<span class="fieldset-label">Optional</span>
+			</fieldset>
+
+			<fieldset id="country" class="fieldset">
+				<legend class="fieldset-legend">Where did the Miracle occur?</legend>
+				<select class="select" bind:value={currentCountry}>
+					{#each data.countryData as country}
+						<option value={country.id}>{country.name}</option>
+					{/each}
+				</select>
+				<span class="fieldset-label">Optional</span>
+			</fieldset>
+
+			<fieldset data-id="draft" class="fieldset p-4 bg-base-100 border border-base-300 rounded-box w-64">
+				<label class="fieldset-label">
+					<input type="checkbox" checked={data?.miracleData.draft} class="checkbox" />
+					Is this a Draft?
+				</label>
+			</fieldset>
+
+			<fieldset data-id="deleted" class="fieldset p-4 bg-base-100 border border-base-300 rounded-box w-64">
+				<label class="fieldset-label">
+					<input type="checkbox" checked={data?.miracleData.deleted} class="checkbox" />
+					Delete this Miracle?
+				</label>
+			</fieldset>
+
+			<div>
+				<button class="btn btn-success">Update</button>
 			</div>
 		</form>
 	</div>
 </section>
+
+<style>
+    .fieldset {
+        margin: .5rem 0;
+    }
+</style>

@@ -1,19 +1,13 @@
 <script lang="ts">
 
 	import type { ListData } from '$lib/utils/types/general-types';
+	import { truncate } from '$lib/utils/helpers/helper.utils';
 
 	interface ListProps {
 		list: ListData[];
 	}
 
 	let { list }: ListProps = $props();
-	const truncateString = (str: string, maxLength: number) => {
-		if (str.length >= maxLength) {
-			return str.substring(0, maxLength - 3) + '...';
-		}
-
-		return str;
-	};
 
 </script>
 
@@ -33,7 +27,7 @@
 						&mdash; {item.countries?.name}</h5>
 					<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
 						{#if item.blurb}
-							{truncateString(item.blurb, 100)}
+							{truncate(item.blurb, 100)}
 						{/if}
 					</p>
 					<p

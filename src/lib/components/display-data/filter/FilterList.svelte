@@ -28,6 +28,7 @@
 	const handleLocationFilterChange = (event: Event, filterIdList: string[], filterKey: string) => {
 		const target = event.target as HTMLInputElement;
 
+		console.log('here');
 		if (target.checked && !filterIdList.includes(target.value)) {
 			filterIdList.push(target.value);
 		} else {
@@ -42,6 +43,7 @@
 	const handleItemTextFilterInput = (event: Event) => {
 		const target = event.target as HTMLInputElement;
 		const pattern = new RegExp(`${target.value}`, 'i');
+		console.log(target.value);
 		itemList = target.value ? items.filter(item => {
 			return item.name.match(pattern);
 		}) : items;
@@ -71,13 +73,13 @@
 			<input type="checkbox" />
 			<div class="collapse-title text-xl font-medium">{itemType}</div>
 			<div class="collapse-content">
-				<input type="text" placeholder="Enter Country Here"
-							 class="country-text-input input input-bordered w-full max-w-xs"
+				<input type="text" placeholder="Enter Miracle Here"
+							 class="miracle-text-input input input-bordered w-full max-w-xs"
 							 value={itemTextInput} oninput={handleItemTextFilterInput} />
-				<div class="country-list">
+				<div class="miracle-list">
 					{#each itemList as item }
 						<label id={item.id.toString()} for={item.id}
-									 class="country-label cursor-pointer label justify-normal">
+									 class="miracle-label cursor-pointer label justify-normal">
 							<input name={item.id} type="checkbox" class="checkbox"
 										 value={item.id}
 										 checked={itemFiltersIds.includes(item.id)}

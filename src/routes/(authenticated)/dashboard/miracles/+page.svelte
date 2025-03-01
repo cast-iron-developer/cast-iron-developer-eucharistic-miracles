@@ -7,12 +7,16 @@
 
 </script>
 
-<section class="bg-white">
-	<div class="container py-16">
-		<h1 class="text-3xl">
-			Miracles
-		</h1>
-	</div>
+<section class="bg-white to-md:px-4">
+	<article class="container py-16">
+		<div class="max-w-3xl mx-auto">
+			<h1 class="text-3xl">
+				Miracles
+			</h1>
+			<p>To Edit and existing Eucharistic Miracle, click the accompanying button to open it up.</p>
+			<div class="divider"></div>
+		</div>
+	</article>
 	<div class="flex flex-row flex-wrap justify-center gap-5">
 		{#each data.miracleData as miracle}
 			<div class="card bg-base-100 w-96 shadow-xl">

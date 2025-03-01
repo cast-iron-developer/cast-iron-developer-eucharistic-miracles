@@ -6,7 +6,7 @@
 
 <section class="bg-white">
 	<section class="container py-16">
-		<article id="admin" class="my-10">
+		<article id="admin" class="my-10 max-w-3xl mx-auto">
 			<h3 class="text-3xl">Admin Page</h3>
 			<p>This is a compilation of all the articles regarding Eucharistic Miracles, Saints, Miraculous Communions & the
 				Blessed Mother that we have been able to compile and/or borrowed from Bl. Carlo's website.</p>

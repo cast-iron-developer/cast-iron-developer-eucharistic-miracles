@@ -1,5 +1,10 @@
 import type { Actions, PageServerLoad } from './$types';
-import type { MiracleTableType, ServerErrorType } from '$lib/utils/types/general-types';
+import type {
+	CountryTableType,
+	LanguageTableType,
+	MiracleTableType,
+	ServerErrorType
+} from '$lib/utils/types/general-types';
 import { genericApiCall } from '$lib/utils/apiUtils';
 import { supabase } from '$lib/server/supabaseClient';
 import { error } from '@sveltejs/kit';
@@ -17,8 +22,28 @@ export const load: PageServerLoad = async ({ params }) => {
 		});
 	}
 
+	const [languageData, languageError]: [LanguageTableType[], ServerErrorType | null] =
+		await genericApiCall<LanguageTableType>(supabase.from('languages').select('*'));
+
+	if (languageError) {
+		error(languageError.status, {
+			message: languageError.statusText
+		});
+	}
+
+	const [countryData, countryError]: [CountryTableType[], ServerErrorType | null] =
+		await genericApiCall<CountryTableType>(supabase.from('countries').select('*'));
+
+	if (countryError) {
+		error(countryError.status, {
+			message: countryError.statusText
+		});
+	}
+
 	return {
-		miracleData: miracleData[0]
+		miracleData: miracleData[0],
+		languageData,
+		countryData
 	};
 };
 
@@ -28,10 +53,6 @@ export const actions: Actions = {
 
 		try {
 			const result = editMiracleSchema.parse(formData);
-
-
-		} catch (e: any) {
-
-		}
+		} catch (e: any) {}
 	}
 };

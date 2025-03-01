@@ -78,18 +78,33 @@ export type ApiDatabaseResponseType<T> = T[];
 // Navigation Types
 export type NavigationItemType = {
 	title: string;
-	href: string;
+	icon?: Icon;
+	href?: string;
+	onClickAction?: Promise<void>;
+};
+
+export type AdminItemsType = {
+	title: string;
+	style: string;
 };
 
 export type NavigationListType = {
 	navigationListItems: NavigationItemType[];
 };
 
+export type Icon = {
+	icon: string;
+	width: string;
+	height: string;
+};
+
 export type NavigationStyles = {
+	navbar: string;
 	container: string;
 	menuButton: string;
 	mobileListStyles: string;
 	mobileItemStyles: string;
 	logoStyles: string;
 	desktopListStyles: string;
+	desktopItemStyles: string;
 };

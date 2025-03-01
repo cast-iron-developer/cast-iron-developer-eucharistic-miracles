@@ -15,3 +15,13 @@ export const truncate = (str: string, maxLength: number) => {
 
 	return reversed.reverse().join(' ') + '...';
 };
+
+export const recordTypeEnum = [
+	'Saints',
+	'Miracles',
+	'Our Lady',
+	'Country',
+	'Language',
+	'Communions'
+] as const;
+

@@ -14,7 +14,7 @@
 	<article class="mx-auto my-3 p-6 rounded-md shadow-xl border border-black text-white bg-trueWhite max-w-96">
 		<div class="form mx-auto ">
 			<h2 class="text-xl mb-4 text-tert-100 text-center">Please Sign-in to proceed.</h2>
-			<form class="mx-auto w-80" method="POST" action="?/login">
+			<form class="mx-auto from-sm:w-80" method="POST" action="?/login">
 				{#if form?.errors?.message}
 					<div class="mb-5">
 						<p class="label-text-alt text-error">{form?.errors?.message}</p>
